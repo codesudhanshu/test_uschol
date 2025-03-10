@@ -47,8 +47,8 @@ export default function GetinTouch() {
 			});
 			res = await res.json();
 			if (res.success) {
-				// message.success(res.message)
-				// setContactData(initialState);
+				message.success(res.message)
+				setContactData(initialState);
 				router.push("/thank-you"); 
 			} else {
 				message.error(res.message)
