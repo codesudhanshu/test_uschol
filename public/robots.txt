@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://upschol.com
+
+# Sitemaps
+Sitemap: https://upschol.com/sitemap.xml
