@@ -1262,7 +1262,7 @@ margin: 20px;}
         justify-content: space-between;
         align-items: center;
         padding: 0 3em;
-        margin: 2em 0;
+        margin: 10px 0;
     }
     .buttons_form{
         margin-left: 2em;
@@ -1534,6 +1534,16 @@ margin: 20px;}
         color: white !important;
         font-size: 1.2em;
     }
+    .formContainer {
+        background: white;
+        padding: 0 0 20px 0;
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
   }
 
  

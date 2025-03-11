@@ -105,9 +105,6 @@ return(<><Head><meta charset="utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="icon" type="image/x-icon" href="/nmims/favicon.png" />
-		{/* <Script src="/nmims/jquery-3.3.1.min.js" />
-		<Script src="/nmims/easy-responsive-tabs.js" />
-		<Script src="/nmims/slick.js" /> */}
 		<meta name="author" content='upschool'/>
 		<meta name="keyword" content="" />
 		<meta name="description" content=''/>
@@ -243,9 +240,9 @@ return(<><Head><meta charset="utf-8" />
 				</h2>
 				<span>An MBA program to launch your career to the next level!</span>
 				<p>
-					Get ready to take your career to the next level with NMIMS CDOE’s MBA program. Our five contemporary
+					Get ready to take your career to the next level with NMIMS CDOE&amp;s MBA program. Our five contemporary
 					specialisations are designed for working professionals like you, offering flexible learning options
-					from expert faculty. Gain the skills and knowledge needed to succeed in today’s competitive business
+					from expert faculty. Gain the skills and knowledge needed to succeed in today&amp;s competitive business
 					landscape. Enrol now to transform your future.
 				</p>
 				<div className={styles.bfr_gac}>
@@ -339,6 +336,102 @@ return(<><Head><meta charset="utf-8" />
 				</div>
 			</div>
 		</section>
+
+		<section className={styles.container_specialize}>
+			<div className={styles.conatiners}>
+				<h2 className={styles.r_colors}>Specializations Wize Updated Fees 2025</h2>
+				<button className={styles.structure} onClick={() => {
+								const fnameInput = document.getElementById("name");
+								
+								if (fnameInput) {
+									fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
+									fnameInput.focus(); // Instant focus without delay
+								}
+							}}>View Fees Structure</button>
+			</div>
+			<table className={styles.tables}>
+  			    <thead>
+  			      <tr>
+  			        <th className={styles.tables_th1}>Specializations</th>
+  			        <th className={styles.tables_th2}>Fees</th>
+  			        <th className={styles.tables_th3}>Duration</th>
+  			      </tr>
+  			    </thead>
+  			    <tbody>
+  			      <tr>
+  			        <td className={styles.tables_td1}>Business Management</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			      <tr>
+  			        <td className={styles.tables_td1}>Operations Management</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			      <tr>
+  			        <td className={styles.tables_td1}>HR Management</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			      <tr>
+  			        <td className={styles.tables_td1}>Finance Management</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			      <tr>
+  			        <td className={styles.tables_td1}>Marketing Management</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			      <tr>
+  			        <td className={styles.tables_td1}>Data Science</td>
+  			        <td className={styles.tables_td2}>₹55,000 /Semester</td>
+  			        <td className={styles.tables_td3}>2 Years</td>
+  			      </tr>
+  			    </tbody>
+  			  </table>
+		</section>
+
+		<section className={styles.prices_section}>
+			<div className={styles.datastructure}>
+				<h2 className={styles.courses}><b>Fees Structure </b></h2>
+				<h4 className={styles.hadd}><b>Convenient Fee Payment Option:</b></h4>
+				<p className={styles.para_cont}>Choose your preferred fee payment option: semester-wise (4 semesters) or annually (2 years).</p>
+			</div>	
+			<div className={styles.options_container}>
+				<div className={styles.options_con}>
+					<div className={styles.options}>
+						<h2 className={styles.datas}>Option 1</h2>
+						<h2 className={styles.datas}><b>Annual payment</b></h2>
+						<h2 className={styles.datas}>(in INR)</h2>
+					</div>
+					<div className={styles.numbers}>
+						<div>
+							<h2 className={styles.courses}>MBA</h2>
+						</div>
+						<div>
+							<h2 className={styles.prices}>1,05,000/-</h2>
+						</div>
+					</div>
+				</div>
+				<div className={styles.options_con}>
+					<div className={styles.options}>
+						<h2 className={styles.datas}>Option 2</h2>
+						<h2 className={styles.datas}><b>Semester-wise fee payment</b></h2>
+						<h2 className={styles.datas}>(in INR)</h2>
+					</div>
+					<div className={styles.numbers}>
+						<div>
+							<h2 className={styles.courses}>MBA</h2>
+						</div>
+						<div>
+							<h2 className={styles.prices}>55,000/-</h2>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</section>
+
 {/* Start Section 05 */}<section className={styles.section05}>
 	<div className={styles.aboutnmims_section}>
 		<div className={styles.container}>

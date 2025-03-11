@@ -2393,3 +2393,189 @@ h2.resp_accordion { display: block; }
     text-align: center;
     width: 50%;
 }
+
+.tables{
+    width: 80%;
+    border-radius: 2px;
+    table-layout: auto;
+}
+
+
+.tables_th1{
+  background-color:  #772879;
+  color: white;
+  padding: 1em;
+  border: 1px solid black;
+  width: 50%;
+  text-align: start;
+}
+.tables_th2{
+    background-color:  #772879;
+    color: white;
+    padding: 1em;
+    border: 1px solid black;
+    width: 35%;
+    text-align: start;
+  }
+  .tables_th3{
+    background-color:  #772879;
+    color: white;
+    padding: 1em;
+    border: 1px solid black;
+    width: 25%;
+    text-align: start;
+  }
+
+.tables_td1{
+    background-color: #dde8f9;
+    padding: 1em;
+    border: 1px solid black;
+    width: 50%;
+}
+
+.tables_td2{
+    background-color: #dde8f9;
+    padding: 1em;
+    border: 1px solid black;
+    width: 35%;
+}
+.tables_td3{
+    background-color: #dde8f9;
+    padding: 1em;
+    border: 1px solid black;
+    width: 25%;
+}
+
+.structure{
+    background-color: #800000;
+    color: white;
+    border-radius: 20px;
+    padding: 1em;
+    font-size: 1em;
+    margin: 1em 0 2em 0;
+}
+
+.r_colors {
+    color: #36183e;
+    font-size: 35px;
+    font-family: 'Arial';
+    font-weight: unset;
+}
+
+.tables th, .tables td {
+    text-align: start;
+    word-wrap: break-word; /* Break words if too long */
+    white-space: normal; /* Allow text wrapping */
+}
+
+.container_specialize{
+    margin-top: -3em;
+    padding: 3em 5em 5em 10em;
+    background-color: rgb(240, 240, 240);
+}
+
+.conatiners{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 2em;
+}
+
+.options{
+    background-color: #36183e;
+    padding: 1em 2em;
+    border-radius: 20px 20px 0 0;
+    color: white;
+    height: auto;
+}
+
+.options_container{
+    display: flex;
+    align-items: center;
+}
+
+.numbers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2em;
+}
+
+.courses{
+    color: #36183e;
+    font-size: 2em;
+}
+
+.prices{
+    color: #800000;
+    font-size: 2em;
+}
+
+.datas{
+    font-size: 1.5em;
+    line-height: 2em;
+}
+
+.options_con{
+    width: 30em;
+    height: 17em;
+    background-color: rgb(233, 233, 233);
+    margin:2em;
+    border-radius: 20px;
+}
+
+.prices_section{
+    padding: 5em 5em;
+}
+
+.datastructure{
+    margin:  0 0 0 2em;
+}
+
+.para_cont{
+    margin: 10px 0;
+}
+
+.hadd{
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+
+@media screen and (max-width:767px) {
+    .tables{
+        width: 100%;
+        border-radius: 2px;
+        table-layout: auto;
+    }
+    .options_container{
+        display: block;
+        align-items: center;
+    }
+
+    .prices_section{
+        padding: 3em 1em;
+    }
+    
+    .container_specialize{
+        margin-top: -3em;
+        padding: 3em 1em;
+        background-color: rgb(240, 240, 240);
+    }
+
+    .options_con{
+        width: auto;
+        height: auto;
+        background-color: rgb(233, 233, 233);
+        margin:2em;
+        border-radius: 20px;
+    }
+    .tables th, .tables td {
+        text-align: start;
+        word-wrap: break-word; /* Break words if too long */
+        white-space: normal; /* Allow text wrapping */
+        padding: 10px;
+        white-space: wrap; /* Prevent text wrapping */
+    }
+}

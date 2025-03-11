@@ -869,6 +869,7 @@ const Manipal = () => {
 			)}
 
 {activeTab === "#menu1" && (
+	<div className={`${styles.tab_content} tab-content`}>
 						<div style={{ padding: 23 }}>
 							<div className="row">
 								<div className="col-md-4 col-4">
@@ -1077,8 +1078,10 @@ const Manipal = () => {
 								</div>
 							</div>
 						</div>
+						</div>
 )}
 {activeTab === "#menu2" && (
+	<div className={`${styles.tab_content} tab-content`}>
 						<div style={{ padding: 23 }}>
 							<div className="row">
 								<div className="col-md-4 col-4">
@@ -1286,6 +1289,7 @@ const Manipal = () => {
 									</div>
 								</div>
 							</div>
+						</div>
 						</div>
 							)}
 				</div>
