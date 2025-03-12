@@ -119,5 +119,33 @@ export async function sendScholarShipEmail(users, form_data, response) {
 		console.log(error)
 		return false;
 	}
-
 }
+
+
+async function sendEnquiryNotification({ name, email, phoneNumber, course, location, college }) {
+    const recipientEmail = "sudhanshusrivastava139@mail.com";
+    const subject = "New Enquiry in UpSchol.com";
+    const message = `Name: ${name},\nCourse: ${course},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}`;
+
+    const params = {
+        Source: process.env.SES_EMAIL_NOREPLY,
+        Destination: {
+            ToAddresses: [recipientEmail],
+        },
+        Message: {
+            Subject: { Data: subject },
+            Body: {
+                Text: { Data: message }
+            }
+        }
+    };
+
+    try {
+        await ses.sendEmail(params).promise();
+        console.log("Enquiry email sent successfully.");
+    } catch (error) {
+        console.error("Error sending enquiry email:", error);
+    }
+}
+
+export default sendEnquiryNotification;

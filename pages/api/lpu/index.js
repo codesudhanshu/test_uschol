@@ -1,5 +1,6 @@
 import dbConnect from "../../../dbConnect";
 import lpuModel from '../../../model/lpuModel';
+import sendEnquiryNotification from '../../../services/email';
 
 export default async function handler(req, res) {
     await dbConnect(); 
@@ -19,8 +20,9 @@ export default async function handler(req, res) {
                 course,
                 location
             });
-
+            // const college = "Lovely Professional University"
             await newEntry.save();
+            // await sendEnquiryNotification({ name, email, phoneNumber, college, course, location, });
             return res.status(201).json({ success: true, message: 'Data saved successfully' });
 
         } catch (error) {

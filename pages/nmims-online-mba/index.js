@@ -337,7 +337,7 @@ return(<><Head><meta charset="utf-8" />
 			</div>
 		</section>
 
-		<section className={styles.container_specialize}>
+		{/* <section className={styles.container_specialize}>
 			<div className={styles.conatiners}>
 				<h2 className={styles.r_colors}>Specializations Wize Updated Fees 2025</h2>
 				<button className={styles.structure} onClick={() => {
@@ -390,7 +390,7 @@ return(<><Head><meta charset="utf-8" />
   			      </tr>
   			    </tbody>
   			  </table>
-		</section>
+		</section> */}
 
 		<section className={styles.prices_section}>
 			<div className={styles.datastructure}>
