@@ -2520,12 +2520,13 @@ h2.resp_accordion { display: block; }
 .options_con{
     width: 30em;
     height: 17em;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(249, 249, 249);
     margin:2em;
     border-radius: 20px;
 }
 
 .prices_section{
+    background-color: rgb(230, 230, 230);
     padding: 5em 5em;
 }
 
