@@ -1,5 +1,6 @@
 import dbConnect from "../../../dbConnect";
 import manipalModel from '../../../model/manipalModel';
+import sendEnquiryNotificationmaninmims from '../../../services/email';
 
 export default async function handler(req, res) {
     await dbConnect(); 
@@ -19,7 +20,9 @@ export default async function handler(req, res) {
                 location
             });
 
+            const college = "Manipal University"
             await newEntry.save();
+            await sendEnquiryNotificationmaninmims({ name, email, phoneNumber, college, location });
             return res.status(201).json({ success: true, message: 'Data saved successfully' });
 
         } catch (error) {

@@ -1,5 +1,6 @@
 import dbConnect from "../../../dbConnect";
 import amityModel from '../../../model/amityModel';
+import sendEnquiryNotificationamity from '../../../services/email';
 
 export default async function handler(req, res) {
     await dbConnect(); 
@@ -21,7 +22,9 @@ export default async function handler(req, res) {
                 location
             });
 
-            await newEntry.save();
+             const college = "Amity University"
+             await newEntry.save();
+             await sendEnquiryNotificationamity({ first_name, last_name, email, phoneNumber, course, college, location });
             return res.status(201).json({ success: true, message: 'Data saved successfully' });
 
         } catch (error) {

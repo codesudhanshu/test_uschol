@@ -20,9 +20,9 @@ export default async function handler(req, res) {
                 course,
                 location
             });
-            // const college = "Lovely Professional University"
+            const college = "Lovely Professional University"
             await newEntry.save();
-            // await sendEnquiryNotification({ name, email, phoneNumber, college, course, location, });
+            await sendEnquiryNotification({ name, email, phoneNumber, college, course, location, });
             return res.status(201).json({ success: true, message: 'Data saved successfully' });
 
         } catch (error) {

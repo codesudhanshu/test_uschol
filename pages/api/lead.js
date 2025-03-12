@@ -2,6 +2,7 @@
 import dbConnect from "../../dbConnect";
 var { success, error } = require('../../components/response');
 import LeadModel from "../../model/leadModel";
+import sendEnquiryNotificationgetintouch from '../../services/email';
 
 export default async function SaveLead(req, res) {
 
@@ -14,6 +15,7 @@ export default async function SaveLead(req, res) {
 			try {
 				let lead = await LeadModel.create(req.body);
 				console.log(lead);
+				await sendEnquiryNotificationgetintouch({lead});
 				success(res, { message: 'Thank you for applying we will in touch shortly!' });
 			} catch (e) {
 				console.log(e);

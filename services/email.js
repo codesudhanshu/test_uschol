@@ -122,8 +122,8 @@ export async function sendScholarShipEmail(users, form_data, response) {
 }
 
 
-async function sendEnquiryNotification({ name, email, phoneNumber, course, location, college }) {
-    const recipientEmail = "sudhanshusrivastava139@mail.com";
+export async function sendEnquiryNotification({ name, email, phoneNumber, course, location, college }) {
+    const recipientEmail = "upscholindia@gmail.com";
     const subject = "New Enquiry in UpSchol.com";
     const message = `Name: ${name},\nCourse: ${course},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}`;
 
@@ -142,10 +142,88 @@ async function sendEnquiryNotification({ name, email, phoneNumber, course, locat
 
     try {
         await ses.sendEmail(params).promise();
-        console.log("Enquiry email sent successfully.");
+        console.log(`Enquiry email sent successfully. ${params.Destination.ToAddresses}`);
     } catch (error) {
         console.error("Error sending enquiry email:", error);
     }
 }
 
-export default sendEnquiryNotification;
+export async function sendEnquiryNotificationmaninmims({ name, email, phoneNumber, location, college }) {
+    const recipientEmail = "upscholindia@gmail.com";
+    const subject = "New Enquiry in UpSchol.com";
+    const message = `Name: ${name},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}`;
+
+    const params = {
+        Source: process.env.SES_EMAIL_NOREPLY,
+        Destination: {
+            ToAddresses: [recipientEmail],
+        },
+        Message: {
+            Subject: { Data: subject },
+            Body: {
+                Text: { Data: message }
+            }
+        }
+    };
+
+    try {
+        await ses.sendEmail(params).promise();
+        console.log(`Enquiry email sent successfully. ${params.Destination.ToAddresses}`);
+    } catch (error) {
+        console.error("Error sending enquiry email:", error);
+    }
+}
+
+export async function sendEnquiryNotificationgetintouch({ lead }) {
+    const recipientEmail = "upscholindia@gmail.com";
+    const subject = "New Enquiry in UpSchol.com";
+    const message = `${lead}`;
+
+    const params = {
+        Source: process.env.SES_EMAIL_NOREPLY,
+        Destination: {
+            ToAddresses: [recipientEmail],
+        },
+        Message: {
+            Subject: { Data: subject },
+            Body: {
+                Text: { Data: message }
+            }
+        }
+    };
+
+    try {
+        await ses.sendEmail(params).promise();
+        console.log(`Enquiry email sent successfully. ${params.Destination.ToAddresses}`);
+    } catch (error) {
+        console.error("Error sending enquiry email:", error);
+    }
+}
+
+async function sendEnquiryNotificationamity({ first_name, last_name, email, phoneNumber, course, college, location}) {
+    const recipientEmail = "upscholindia@gmail.com";
+    const subject = "New Enquiry in UpSchol.com";
+    const message = `Name: ${first_name} ${last_name},\nCourse: ${course},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}`;
+
+    const params = {
+        Source: process.env.SES_EMAIL_NOREPLY,
+        Destination: {
+            ToAddresses: [recipientEmail],
+        },
+        Message: {
+            Subject: { Data: subject },
+            Body: {
+                Text: { Data: message }
+            }
+        }
+    };
+
+    try {
+        await ses.sendEmail(params).promise();
+        console.log(`Enquiry email sent successfully. ${params.Destination.ToAddresses}`);
+    } catch (error) {
+        console.error("Error sending enquiry email:", error);
+    }
+}
+
+export default sendEnquiryNotificationamity
