@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
 
 	// Jin pages pe header/footer nahi dikhana hai
 	const hideLayoutPaths = [
-		'/lpu-online-learning-plateform',
+		'/lpu-online-learning-platform',
 		'/amity-online-program',
 		'/nmims-online-mba',
 		'/manipal-online-mba-program',
