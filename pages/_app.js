@@ -14,7 +14,6 @@ export default function App({ Component, pageProps }) {
 	const router = useRouter();
 	const isAdmin = router.pathname.includes('admin');
 
-	// Jin pages pe header/footer nahi dikhana hai
 	const hideLayoutPaths = [
 		'/lpu-online-learning-platform',
 		'/amity-online-program',
