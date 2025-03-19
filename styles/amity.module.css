@@ -927,6 +927,21 @@
         color: white;
         background-color: rgba(255, 165, 0, 0.6); /* Orange with 60% opacity */
     }
+    .main_container {
+        position: relative;
+        background-image: url('/amity/Group-m.jpg');
+        height: 100vh; /* Full viewport height */
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover; /* Ensures the container is fully covered */
+        background-position: center; /* Centers the image */
+    }
+    
+    
+    
+    .forms{
+        margin-top:15em;
+    }
 }
 
 
