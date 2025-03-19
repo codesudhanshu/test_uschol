@@ -367,7 +367,7 @@ return(
           dots={false}
           nav={false} 
         >
-          {["/lpu/img1.jpg", "/lpu/img2.jpg", "/lpu/img3.jpg"].map((src, index) => (
+          {["/lpu/banner5.jpeg","/lpu/banner4.jpg","/lpu/img1.jpg", "/lpu/img2.jpg", "/lpu/img3.jpg"].map((src, index) => (
             <div key={index} className={styles.slide}>
               <img src={src} width="100%" alt={`LPU Banner ${index + 1}`} />
             </div>

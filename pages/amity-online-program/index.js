@@ -4,6 +4,12 @@ import { useRef, useState } from 'react';
 import { useRouter } from "next/router"; // Import useRouter
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
+
 const Amity = () =>{
     const formRef = useRef(null); // Create a reference for the form
     const first = useRef(null) 
@@ -102,14 +108,26 @@ const Amity = () =>{
         {
           title: "Specialization",
           subjects: [
-            "Marketing",
-            "Finance",
-            "Human Resource Management",
-            "Operations Management",
+            "Finance and Accounting Management",
+            "Global Finance Market",
+            "Insurance Management",
+            "International Finance",
+            "Banking Services",
+            "Marketing & Sales Management",
+            "International Business Management",
+            "Retail Management",
+            "Entrepreneurship & Leadership Management",
+            "Business Analytics",
             "Information Technology Management",
-            "International Business",
-            "Entrepreneurship",
-            "Supply Chain Management",
+            "Digital Marketing Management",
+            "Data Science",
+            "Digital Entrepreneurship",
+            "Human Resource Management",
+            "Human Resources Analytics",
+            "Production & Operations Management",
+            "Hospitality Management",
+            "Hospital & Healthcare Management",
+            "Petroleum & Natural Gas Management"
           ],
         },
       ];
@@ -167,13 +185,7 @@ const Amity = () =>{
     <div className={styles.main_container}>
 
 <div className={styles.main_container_flex}>
-    <div className={styles.main_data}>
-        <div className={styles.main_headings}>
-            <h1>Drive Your Career Growth With <br /> Amity&rsquo;s Online MBA!</h1>
-        </div>
-        <div className={styles.main_headings2}>
-            <h1>Gain Expertis, Build Networks, and Lead with <br /> impact. Secure Your Spot Now!</h1>
-        </div>
+    <div>
     </div>
 
 <div ref={formRef} className={styles.forms}>
@@ -184,7 +196,7 @@ const Amity = () =>{
     </h1>
    </div>
    <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
-            <div className="flex space-x-2">
+            <div className="flex space-x-1">
                 <input className="w-1/2 p-2 border border-gray-300 rounded" placeholder="First Name" type="text" name="first_name" ref={first} value={formData.first_name} onChange={handleChange} required />
                 <input className="w-1/2 p-2 border border-gray-300 rounded" placeholder="Last Name" type="text" name="last_name" value={formData.last_name} onChange={handleChange} required />
             </div>
@@ -196,9 +208,11 @@ const Amity = () =>{
                 <option value="BCA">BCA</option>
                 <option value="BBA">BBA</option>
                 <option value="BA">BA</option>
+                <option value="BCOM">BCOM</option>
                 <option value="MBA">MBA</option>
                 <option value="MCA">MCA</option>
-                <option value="BCOM">BCOM</option>
+                <option value="MCOM">MCOM</option>
+                <option value="MA">MA</option>
             </select>
 
             <input className="w-full p-2 border border-gray-300 rounded" placeholder="Location (City)" type="text" name="location" value={formData.location} onChange={handleChange} required />
@@ -211,7 +225,7 @@ const Amity = () =>{
  </div>
 
  </div>
-    <div className='text-white' >
+    {/* <div className='text-white' >
     <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 p-4" id={styles.tenure}>
         <div class="bg-blue-900 p-7 rounded-lg flex items-center space-x-4">
             <i class="fas fa-graduation-cap text-3xl"></i>
@@ -235,7 +249,7 @@ const Amity = () =>{
             </div>
         </div>
         </div>
-    </div>
+    </div> */}
     </div>
 
 <div className={styles.admissonsection}>
@@ -293,80 +307,148 @@ const Amity = () =>{
             </div>
 
             {selectedCourse === "UG" && (
-                <div className={styles.ugcourse}>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/img1.jpeg" className={styles.ugcourse_container_img} alt="BBA" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online BBA</h2>
-                            <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 3 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/img2.jpeg" className={styles.ugcourse_container_img} alt="BCA" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online BCA</h2>
-                            <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 3 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/img3.jpeg" className={styles.ugcourse_container_img} alt="BA" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online BA</h2>
-                            <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 3 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
-                            </div>
-                        </div>
+    <Swiper
+        slidesPerView={1}  // Number of slides visible at a time
+        spaceBetween={10}  // Spacing between slides
+        pagination={{ clickable: true }}
+        navigation={false}
+        breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        }}
+        modules={[Pagination, Navigation]}
+        className={styles.ugcourse}
+    >
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/img1.jpeg" className={styles.ugcourse_container_img} alt="BBA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online BBA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 3 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
                     </div>
                 </div>
-            )}
+            </div>
+        </SwiperSlide>
 
-            {selectedCourse === "PG" && (
-                <div className={styles.ugcourse}>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/OnlineMA.jpg" className={styles.ugcourse_container_img} alt="MBA" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online MBA</h2>
-                            <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 2 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/OnlineMCA.jpg" className={styles.ugcourse_container_img} alt="MCA" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online MCA</h2>
-                            <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 2 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.ugcourse_container}>
-                        <img src="/amity/OnlineMCom.jpg" className={styles.ugcourse_container_img} alt="MCom" />
-                        <div className={styles.ug_content}>
-                            <h2 className={styles.benifits}>Online MCOM</h2>
-                            <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
-                            <div className={styles.ugtenure}>
-                                <h4>Duration: 2 Years</h4>
-                                <a className={styles.apply} onClick={scrollToForm} >Apply Now</a>
-                            </div>
-                        </div>
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/img2.jpeg" className={styles.ugcourse_container_img} alt="BCA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online BCA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 3 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
                     </div>
                 </div>
-            )}
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/OnlineMCom.jpg" className={styles.ugcourse_container_img} alt="BCOM" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online BCOM</h2>
+                    <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 3 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/img3.jpeg" className={styles.ugcourse_container_img} alt="BA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online BA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: 12th Pass Out</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 3 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+    </Swiper>
+)}
+
+
+{selectedCourse === "PG" && (
+    <Swiper
+        slidesPerView={1} 
+        spaceBetween={10}
+        pagination={{ clickable: true }}  // Only dots for navigation
+        breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        }}
+        modules={[Pagination]}
+        className={styles.ugcourse}
+    >
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/OnlineMA.jpg" className={styles.ugcourse_container_img} alt="MBA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online MBA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 2 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/OnlineMCA.jpg" className={styles.ugcourse_container_img} alt="MCA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online MCA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 2 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/OnlineMCom.jpg" className={styles.ugcourse_container_img} alt="MCom" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online MCOM</h2>
+                    <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 2 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className={styles.ugcourse_container}>
+                <img src="/amity/img3.jpeg" className={styles.ugcourse_container_img} alt="MA" />
+                <div className={styles.ug_content}>
+                    <h2 className={styles.benifits}>Online MA</h2>
+                    <h4 className={styles.eligibility}>Eligibility: Graduate</h4>
+                    <div className={styles.ugtenure}>
+                        <h4>Duration: 2 Years</h4>
+                        <a className={styles.apply} onClick={scrollToForm}>Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </SwiperSlide>
+    </Swiper>
+)}
         </div>
 
 <div className={styles.fees}>

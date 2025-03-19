@@ -48,7 +48,8 @@
     "react-scroll": "^1.9.0",
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "swiper": "^11.2.6"
   },
   "description": "This README would normally document whatever steps are necessary to get your application up and running.",
   "main": "mongodb.js",
