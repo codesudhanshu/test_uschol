@@ -933,14 +933,14 @@
         height: 50vh; /* Full viewport height */
         width: 100%;
         background-repeat: no-repeat;
-        background-size: contain; /* Ensures the container is fully covered */
+        background-size: cover; /* Ensures the container is fully covered */
         background-position: center; /* Centers the image */
     }
     
     
     
     .forms{
-        margin-top:30em;
+        margin-top:25em;
     }
 }
 
