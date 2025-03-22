@@ -931,7 +931,7 @@
 
 
 
-@media screen and (max-width:472px) {
+@media screen and (max-width:800px) {
     .admissonsection{
         display: block;
         flex-wrap: wrap;
