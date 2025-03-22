@@ -948,15 +948,3 @@
     }
 }
 
-
-@media screen and (min-width: 1000px) and (max-width: 1300px) {
-    .main_container {
-        background-image: url('/amity/banners.jpeg');
-        height: 40vh;
-        width: 100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-}
