@@ -185,7 +185,13 @@ const Amity = () =>{
     <div className={styles.main_container}>
 
 <div className={styles.main_container_flex}>
-    <div>
+    <div className={styles.main_data}>
+        <div className={styles.main_headings}>
+            <h1>Drive Your Career Growth With <br /> Amity&rsquo;s Online MBA!</h1>
+        </div>
+        <div className={styles.main_headings2}>
+            <h1>Gain Expertis, Build Networks, and Lead with <br /> impact. Secure Your Spot Now!</h1>
+        </div>
     </div>
 
 <div ref={formRef} className={styles.forms}>
@@ -196,7 +202,7 @@ const Amity = () =>{
     </h1>
    </div>
    <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
-            <div className="flex space-x-1">
+            <div className="flex space-x-2">
                 <input className="w-1/2 p-2 border border-gray-300 rounded" placeholder="First Name" type="text" name="first_name" ref={first} value={formData.first_name} onChange={handleChange} required />
                 <input className="w-1/2 p-2 border border-gray-300 rounded" placeholder="Last Name" type="text" name="last_name" value={formData.last_name} onChange={handleChange} required />
             </div>
@@ -225,7 +231,7 @@ const Amity = () =>{
  </div>
 
  </div>
-    {/* <div className='text-white' >
+    <div className='text-white' >
     <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 p-4" id={styles.tenure}>
         <div class="bg-blue-900 p-7 rounded-lg flex items-center space-x-4">
             <i class="fas fa-graduation-cap text-3xl"></i>
@@ -249,19 +255,19 @@ const Amity = () =>{
             </div>
         </div>
         </div>
-    </div> */}
+    </div>
     </div>
 
 <div className={styles.admissonsection}>
     <div className={styles.ad_admissionsection1}>
             <h2 className={styles.heading_unique}>Admissions Open</h2>
-            <p className={styles.para_unique}>For July &amp;25 session</p>
+            <p className={styles.para_unique}>For 2025 session</p>
     </div>
     <div className={styles.ad_admissionsection2}>
         <div>
             <h2 className={styles.heading_admision}>₹7,582</h2>
             <p className={styles.p_admision} style={{marginTop:"-1em"}}>per month</p>
-            <p className={styles.p_admision}>For July &amp;24 session</p>
+            <p className={styles.p_admision}>For 2025 session</p>
         </div>
         <div>
             <img src="./amity/icon2.png" alt="admission"/>

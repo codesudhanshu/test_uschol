@@ -144,8 +144,8 @@
 
 .main_container {
     position: relative;
-    background-image: url('/amity/Group-m.jpg');
-    height: 85vh;
+    background-image: url('/amity/banners.jpeg');
+    height: 85.5vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -153,10 +153,10 @@
 }
 
 .forms{
-    margin-top: 3em;
+    margin-bottom: -2em;
 }
 
-/* .main_container::before {
+.main_container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -164,8 +164,8 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 25%, rgba(0, 0, 0, 0) 100%);
-    z-index: 1; 
-} */
+    z-index: 1; /* Overlay sirf background ke upar rahega */
+}
 
 .main_container * {
     position: relative;
@@ -667,7 +667,7 @@
         padding: 3em 3em;  
         color: white;
         width: 100%;
-        margin: 17em 0 0 0;
+        margin: 12em 0 0 0;
     }
     
     .ad_admissionsection1{
@@ -914,7 +914,7 @@
 }
 
 
-@media screen and (max-width: 1200px)
+@media screen and (max-width: 1496px)
 {
     #tenure{
         display: none;
@@ -926,21 +926,6 @@
         font-size: 2em;
         color: white;
         background-color: rgba(255, 165, 0, 0.6); /* Orange with 60% opacity */
-    }
-    .main_container {
-        position: relative;
-        background-image: url('/amity/Group-m.jpg');
-        height: 50vh; /* Full viewport height */
-        width: 100%;
-        background-repeat: no-repeat;
-        background-size: cover; /* Ensures the container is fully covered */
-        background-position: center; /* Centers the image */
-    }
-    
-    
-    
-    .forms{
-        margin-top:22em;
     }
 }
 
@@ -956,6 +941,6 @@
         padding: 3em 3em;  
         color: white;
         width: 100%;
-        margin: 20em 0 0 0;
+        margin: 13em 0 0 0;
     }
 }
