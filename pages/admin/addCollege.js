@@ -133,7 +133,7 @@ export default function AddCollege({ tags, placementPartners }) {
 			errors.MetaTitle = "Please Enter Meta Title"
 		}
 
-		if (!values?.Keyword) {s
+		if (!values?.Keyword) {
 			check = false
 			errors.Keyword = "Please Enter Keyword"
 		}
