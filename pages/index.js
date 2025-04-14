@@ -6,6 +6,7 @@ import RightGuidance from "../components/landing_page/RightGuidance";
 import SucessStories from "../components/landing_page/SucessStories";
 import FAQ from "../components/landing_page/faq";
 import Courses from "../components/landing_page/Courses";
+import Head from "next/head";
 import { TagCategories } from "../config";
 import Tag from "../model/tags";
 const Promise = require("promise");
@@ -94,9 +95,15 @@ export default function Page1(props) {
 		};
 	}, []);
 	return (
+		<>
+		<Head>
+				  <title>Apply to Top Online Universities in India | Upschol</title>
+				  <meta name="description" content="Earn a UGC-approved online MBA, BBA, BCom, MCA, or any degree from top online universities in India. Flexible, affordable, and recognized. Apply Now!" />
+				  <meta name="viewport" content="width=device-width, initial-scale=1" />
+				  <meta charSet="UTF-8" />
+				</Head>
 		<div id="landingContainer" className="scroll-smooth bg-background_color"
 		>
-
 			<Banner
 				pg_course={props?.tags['PG COURSE']}
 				ug_course={props?.tags['UG COURSE']}
@@ -119,5 +126,6 @@ export default function Page1(props) {
 			/>
 			<GetinTouch />
 		</div >
+		</>
 	);
 }

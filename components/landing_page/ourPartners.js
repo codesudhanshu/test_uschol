@@ -60,13 +60,13 @@ export default function Partners({ college }) {
 
 					<div className="title mx-auto">
 						<h1 className="text-center text-xl md:text-3xl font-Poppins font-semibold	gradientText">
-							Partner Universities & EdTech Companies
+								EdTech Companies & Top Online Universities in India
 						</h1>
 					</div>
 					<p
 						className="text-center text-lg mt-4 text-white my-3"
 					>
-						Upskill your potential with premium institutes nationwide and top pioneers of ED Tech organizations and level yourself up.
+						Upskill your potential with top online universities in India offering flexible and career-focused online degree programs. Learn from premium institutes and leading EdTech pioneers nationwide, and take the next step toward personal and professional growth.
 					</p>
 				</div>
 				<List

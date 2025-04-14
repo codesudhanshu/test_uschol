@@ -22,6 +22,8 @@ import tagsModel from "../../../model/tags";
 import { useCookies } from "react-cookie";
 import collegeModel from "../../../model/collegeModel";
 import { FaArrowRightLong, FaLocationDot, FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import Head from 'next/head';
+
 
 export async function getServerSideProps(context) {
 	const { slug } = context.params;
@@ -95,7 +97,7 @@ export default function CollegeDetails(props) {
 					whatsAppLink: generateWhatsAppLink(res.college?.college_name)
 				});
 				setPhotos(res.photos);
-
+				console.log("Fetched college:", res.college);
 			}
 		} catch (error) {
 			console.log(error);
@@ -121,8 +123,13 @@ export default function CollegeDetails(props) {
 		init();
 	}, [slug]);
 
+
+	
+	  
+
 	function CourseCard({ major }) {
 		return (
+			
 			<div
 				onClick={() => router.push(`/colleges/${slug}/courses/${major._id}`)}
 				className="h-full w-full shadow-md rounded-lg p-4 flex flex-col justify-between hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-105"
@@ -151,31 +158,24 @@ export default function CollegeDetails(props) {
 				/> */}
 
 				<Typography.Link
-					className="px-4 mt-2 py-2 w-fit rounded font-normal text-center flex items-center gap-x-2 w-auto"
-					style={{
-						border: '1px solid white',
-						color: "#fff",
-						boxShadow: "none",
-					}}
-					disabled={!major?.apply_link}
-					onClick={() => {
-						if (cookies?.user) {
-							window.open(major?.apply_link, "_blank");
-						} else {
-							setSelectedURL(major?.apply_link);
-							setShowLeadModal(true);
-						}
-					}}
-				>
-					Enroll Now
-					<FaArrowRight />
-				</Typography.Link>
+				className="px-4 mt-2 py-2 w-fit rounded font-normal text-center flex items-center gap-x-2"
+				style={{
+					border: '1px solid white',
+					color: "#fff",
+					boxShadow: "none",
+					backgroundColor:  "#7F56D9"
+				}}
+			>
+				Enroll Now
+				<FaArrowRight />
+			</Typography.Link>			
 			</div>
 		);
 	}
 
 	function CollegeCard({ college }) {
 		return (
+			  
 			<div
 				className="px-4 lg:px-2 h-[530px] md:h-[540px] mb-5"
 			>
@@ -312,8 +312,19 @@ export default function CollegeDetails(props) {
 		);
 	}
 
+	
+
 	return (
 		<>
+
+				<Head>
+				  <title>{data.metaTitle}</title>
+				  <meta name="description" content={data.metadescription} />
+				  <meta name="viewport" content="width=device-width, initial-scale=1" />
+				  <meta charSet="UTF-8" />
+				</Head>
+
+
 			<div className="bg-background_color w-full py-6">
 				<div className="container">
 					<div className="h-70vh 2xl:h-50vh flex items-center w-full bg-[#F7F4FF] rounded-xl p-3 relative">
@@ -324,24 +335,21 @@ export default function CollegeDetails(props) {
 							<div
 								className="flex flex-col h-full"
 							>
+				
+								<h1
+									level={3}
+									className="font-semibold font-Poppins mt-2"
+									style={{
+										marginBottom: "10px",
+										fontSize:"24px"
+									}}
+								>
+									{data.college_name}
+								</h1>
 								<div
 									className="flex items-center gap-x-4"
 								>
-									{
-										data?.tags?.length > 0 && (
-											<Typography.Text
-												className="px-6 py-2 rounded font-semibold font-Poppins text-[#6941C6]"
-												style={{
-													backgroundColor: "#e6d2ff"
-												}}
-											>
-												{
-													data?.tags?.length === 1 ? `${data?.tags[0]?.tag_name}` : `${data?.tags[0]?.tag_name} + ${data?.tags?.length - 1} more`
-												}
-											</Typography.Text>
-										)
-									}
-
+									
 									<div
 										className="flex items-center gap-x-2 justify-center"
 									>
@@ -351,15 +359,6 @@ export default function CollegeDetails(props) {
 									</div>
 
 								</div>
-								<Typography.Title
-									level={3}
-									className="font-semibold font-Poppins mt-2"
-									style={{
-										marginBottom: 0
-									}}
-								>
-									{data.college_name}
-								</Typography.Title>
 								<p
 									className="mt-2"
 									style={{
@@ -393,20 +392,12 @@ export default function CollegeDetails(props) {
 									<Typography.Link
 										className="px-8 py-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
 										style={{
-											backgroundColor: data.link ? "#7F56D9" : "#ccc",
+											backgroundColor: "#7F56D9",
 											border: "none",
 											color: "#fff",
 											boxShadow: "none",
 										}}
-										disabled={!data.link}
-										onClick={() => {
-											if (cookies?.user) {
-												window.open(data.link, "_blank");
-											} else {
-												setSelectedURL(data.link);
-												setShowLeadModal(true);
-											}
-										}}
+										
 									>
 										Enroll Now
 										<FaArrowRight />
@@ -482,7 +473,7 @@ export default function CollegeDetails(props) {
 												color: 'black'
 											}}
 										>
-											{fact?.description?.substring(0, 70)}...
+											{fact?.description?.substring(0, 70)}
 										</Typography.Text>
 									</div>
 								))}
@@ -565,19 +556,10 @@ export default function CollegeDetails(props) {
 					<Typography.Link
 						className="px-8 py-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2 w-[170px] mt-6"
 						style={{
-							backgroundColor: data.link ? "#7F56D9" : "#ccc",
+							backgroundColor: "#7F56D9",
 							border: "none",
 							color: "#fff",
 							boxShadow: "none",
-						}}
-						disabled={!data.link}
-						onClick={() => {
-							if (cookies?.user) {
-								window.open(data.link, "_blank");
-							} else {
-								setSelectedURL(data.link);
-								setShowLeadModal(true);
-							}
 						}}
 					>
 						Enroll Now

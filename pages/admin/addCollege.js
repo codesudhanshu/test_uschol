@@ -122,6 +122,22 @@ export default function AddCollege({ tags, placementPartners }) {
 			check = false
 			errors.college_name = "Please Enter College name"
 		}
+		
+		if (!values?.Metadescription) {
+			check = false
+			errors.Metadescription = "Please Enter Meta Description"
+		}
+		
+		if (!values?.MetaTitle) {
+			check = false
+			errors.MetaTitle = "Please Enter Meta Title"
+		}
+
+		if (!values?.Keyword) {s
+			check = false
+			errors.Keyword = "Please Enter Keyword"
+		}
+
 		if (!values.university) {
 			check = false
 			errors.university = "Please Enter University name"

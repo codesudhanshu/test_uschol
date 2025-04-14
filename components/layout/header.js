@@ -232,7 +232,7 @@ export default function PublicHeader() {
 
 							/>
 						</Link>
-						<div
+						{/* <div
 							className='flex items-center gap-x-4 xl:gap-x-8'
 						>
 
@@ -245,9 +245,9 @@ export default function PublicHeader() {
 								Explore Courses
 								<DownOutlined />
 							</Button>
-						</div>
+						</div> */}
 					</div>
-					<div
+					{/* <div
 						className='lg:flex items-center gap-x-4 lg:gap-x-16 hidden ml-6 overflow-x-auto whitespace-nowrap'
 					>
 						{
@@ -261,10 +261,10 @@ export default function PublicHeader() {
 								</a>
 							))
 						}
-					</div>
+					</div> */}
 				</div>
 
-				{
+				{/* {
 					isMenuOpen && (
 						<div
 							className='gap-y-2 flex flex-col lg:hidden py-6'
@@ -311,7 +311,7 @@ export default function PublicHeader() {
 							</Dropdown>
 						</div>
 					)
-				}
+				} */}
 			</div>
 			{
 				isExploreCourses && (

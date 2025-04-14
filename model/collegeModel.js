@@ -59,6 +59,18 @@ const CollegeSchema = new mongoose.Schema({
 		Country: { type: String, default: "India" },
 		pincode: { type: Number },
 	},
+	metadescription:{
+		type: String,
+		default: ''
+	},
+	keyword: {
+		type: String,
+		default: ''
+	},
+	metaTitle: {
+		type: String,
+		default: ''
+	},
 	university: {
 		type: String,
 	},
