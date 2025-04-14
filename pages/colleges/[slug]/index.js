@@ -327,11 +327,11 @@ export default function CollegeDetails(props) {
 
 			<div className="bg-background_color w-full py-6">
 				<div className="container">
-					<div className="h-70vh 2xl:h-50vh flex items-center w-full bg-[#F7F4FF] rounded-xl p-3 relative">
+				<div className="hidden lg:flex h-70vh 2xl:h-50vh items-center w-full bg-[#F7F4FF] rounded-xl p-3 relative">
 						<div
-							className="h-full w-2/4  college-details-container p-2"
+							className="h-full w-2/4  college-details-container p-2 hidden md:block "
 						>
-							<div className="inner-clipped-shape" />
+							<div className="inner-clipped-shape hidden md:block" />
 							<div
 								className="flex flex-col h-full"
 							>
@@ -420,20 +420,20 @@ export default function CollegeDetails(props) {
 									loader={({ src }) =>
 										`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
 									}
-									alt={data?.college_name}
-									className="banner-img-college-details rounded-tr-xl rounded-br-xl h-full w-full object-cover object-center"
+									alt={data.banneralt ||data?.college_name}
+									className="banner-img-college-details hidden md:block rounded-tr-xl rounded-br-xl h-full w-full object-cover object-center"
 									height={1500}
 									width={1500}
 								/>
 								<div
-									className="absolute top-4 right-4 p-2 h-16 w-16 bg-white rounded-xl"
+									className="absolute top-4 right-4 p-2 h-16 w-16 bg-white rounded-xl hidden md:block"
 								>
 									<Image
 										src={data?.logo}
 										loader={({ src }) =>
 											`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
 										}
-										alt="College Logo"
+										alt={data.logoalt ||"College Logo"}
 										height={256}
 										width={256}
 										className="h-full w-full rounded-full object-contain"
@@ -444,10 +444,10 @@ export default function CollegeDetails(props) {
 						</div>
 					</div>
 
-					<div className="flex justify-center px-3">
+					<div className="hidden lg:flex justify-center px-3">
 						{data?.quick_facts?.length > 0 && (
 							<div
-								className={`grid grid-cols-2 md:grid-cols-${data?.quick_facts?.length} rounded-xl absolute block w-3/5 md:w-3/4 lg:w-3/5 `}
+								className={`grid grid-cols-2 md:grid-cols-${data?.quick_facts?.length} rounded-xl  absolute block w-3/5 md:w-3/4 lg:w-3/5 `}
 								style={{
 									boxShadow: '0px 0px 24px 0px rgba(0, 0, 0, 0.10)',
 									zIndex: '0',
@@ -491,7 +491,7 @@ export default function CollegeDetails(props) {
 							loader={({ src }) =>
 								`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
 							}
-							alt={data?.college_name}
+							alt={data.banneralt ||data?.college_name}
 							className="rounded-xl h-full w-full object-cover object-center"
 							height={1500}
 							width={1500}
@@ -504,17 +504,12 @@ export default function CollegeDetails(props) {
 								loader={({ src }) =>
 									`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
 								}
-								alt="College Logo"
+								alt={data.logoalt ||"College Logo"}
 								height={200}
 								width={200}
 								className="h-full w-full rounded-full object-contain"
 							/>
 						</div>
-					</div>
-					<div className="flex mt-5">
-						{
-							getStars(data?.rating)
-						}
 					</div>
 					<Typography.Title
 						level={4}
@@ -525,6 +520,11 @@ export default function CollegeDetails(props) {
 					>
 						{data.college_name}
 					</Typography.Title>
+					<div className="flex mt-5">
+						{
+							getStars(data?.rating)
+						}
+					</div>
 					<p
 						className="mt-3"
 						style={{
