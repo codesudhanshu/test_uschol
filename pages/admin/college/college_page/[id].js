@@ -317,10 +317,9 @@ export default function Edit(props) {
 	const handleUpdate = async (e) => {
 		if (formdata.sample_certificate) {
 			const check = await handleSampleCertificateSubmission();
-			if (!check) {
-				return;
-			}
+			if (!check) return;
 		}
+	
 		if (formdata?.admission_process) {
 			if (!formdata?.admission_process?.desc) {
 				message.error("Please add admission process description");
@@ -331,6 +330,7 @@ export default function Edit(props) {
 				return;
 			}
 		}
+	
 		let isBannerImageAvailable = false;
 		for (let i = 0; i < fileList.length; i++) {
 			if (fileList[i]?.uid === bannerImage?.uid) {
@@ -338,15 +338,17 @@ export default function Edit(props) {
 				break;
 			}
 		}
-
+	
 		if (!isBannerImageAvailable) {
 			message.error("Please select a banner image");
 			return;
 		}
+	
 		try {
 			const filesToUpload = fileList.filter(
 				(file) => !file?.isUploaded && file?.uid !== bannerImage?.uid
 			);
+	
 			if (deletedImages.length > 0) {
 				await fetch("../../../api/admin/file/delete-files", {
 					method: "POST",
@@ -356,6 +358,7 @@ export default function Edit(props) {
 					body: JSON.stringify({ fileIDs: deletedImages }),
 				});
 			}
+	
 			if (filesToUpload.length > 0) {
 				let res = await fetch("../../../api/uploadFile", {
 					method: "POST",
@@ -368,30 +371,30 @@ export default function Edit(props) {
 					}),
 				});
 				let imagedata = await res.json();
+	
 				let promises = [];
 				imagedata?.forEach((url, index) => {
 					let newfile = filesToUpload[index];
-
 					let promise = fetch(url, {
 						headers: {
 							"Content-type": newfile.type,
-							"Access-Control-Allow-Origin": "*",
 						},
 						method: "PUT",
 						body: newfile.originFileObj,
 					});
 					promises.push(promise);
 				});
+	
 				let array = [];
 				let imagesdata = [];
+	
 				await Promise.all(promises)
-					.then(function (res) {
+					.then((res) => {
 						imagesdata = res;
 						imagesdata?.forEach((file, i) => {
 							let obj = {};
 							let college_name = data.college_name;
-							let college = college_name.replace(/\s+/g, "-");
-							college = college.toLowerCase();
+							let college = college_name.replace(/\s+/g, "-").toLowerCase();
 							let parsedUrl = new URL(file.url);
 							let pathname = parsedUrl.pathname.slice(1);
 							obj["college_id"] = data._id;
@@ -403,6 +406,7 @@ export default function Edit(props) {
 					.catch((error) => {
 						console.log(error);
 					});
+	
 				await fetch("../../../api/admin/file", {
 					method: "POST",
 					headers: {
@@ -411,6 +415,8 @@ export default function Edit(props) {
 					body: JSON.stringify({ filedata: array }),
 				});
 			}
+	
+			// Handle banner image
 			let fileID = "";
 			if (bannerImage?.isUploaded) {
 				fileID = bannerImage.uid;
@@ -426,36 +432,37 @@ export default function Edit(props) {
 					}),
 				});
 				bannerImageRes = await bannerImageRes.json();
-				bannerImageRes = await fetch(bannerImageRes[0], {
+	
+				await fetch(bannerImageRes[0], {
 					headers: {
 						"Content-type": bannerImage.type,
-						"Access-Control-Allow-Origin": "*",
 					},
 					method: "PUT",
 					body: bannerImage.originFileObj,
 				});
+	
 				let bannerImageData = {
 					college_id: data._id,
-					path: new URL(bannerImageRes?.url)?.pathname?.slice(1),
+					path: new URL(bannerImageRes?.[0])?.pathname?.slice(1),
 					name: bannerImage.name,
 				};
-				bannerImageRes = await fetch("../../../api/admin/file", {
+	
+				let saveRes = await fetch("../../../api/admin/file", {
 					method: "POST",
 					headers: {
 						"content-type": "application/json",
 					},
 					body: JSON.stringify({ filedata: [bannerImageData] }),
 				});
-				bannerImageRes = await bannerImageRes.json();
-				fileID = bannerImageRes?.data[0]?._id;
+				let saved = await saveRes.json();
+				fileID = saved?.data[0]?._id;
 			}
-
+	
+			// Upload logo if needed
 			let pathname = "";
-
 			if (logo_img?.length > 0 && !logo_img[0]?.isUploaded) {
-				let name = logo_img[0]?.name;
-				name = name?.replace(/\s/g, "");
-
+				let name = logo_img[0]?.name?.replace(/\s/g, "");
+	
 				let res1 = await fetch("../../../api/admin/singleupload", {
 					method: "POST",
 					headers: {
@@ -467,33 +474,33 @@ export default function Edit(props) {
 					}),
 				});
 				let response1 = await res1.json();
+	
 				if (response1.url) {
 					let parsedUrl = new URL(response1?.url);
 					pathname = parsedUrl.pathname.slice(1);
+	
 					await axios.put(response1?.url, logo_img[0]?.originFileObj, {
 						headers: {
 							"Content-type": logo_img[0]?.type,
-							"Access-Control-Allow-Origin": "*",
 						},
 					});
 				}
 			}
-
-
+	
 			const toUpdateFields =
 				pathname === ""
 					? {
-						...formdata,
-						banner_image: fileID,
-						tags: selectedValue,
-					}
+							...formdata,
+							banner_image: fileID,
+							tags: selectedValue,
+					  }
 					: {
-						...formdata,
-						banner_image: fileID,
-						tags: selectedValue,
-						logo: pathname,
-					};
-
+							...formdata,
+							banner_image: fileID,
+							tags: selectedValue,
+							logo: pathname,
+					  };
+	
 			let check = await fetch(`../../../api/admin/college/${id}`, {
 				method: "PATCH",
 				headers: {
@@ -505,13 +512,14 @@ export default function Edit(props) {
 			if (res.success) {
 				message.success("College Details Updated");
 			} else {
-				message.error("error occured");
+				message.error("error occurred");
 			}
 		} catch (err) {
 			console.log(err.message);
 			Sentry.captureException(err);
 		}
 	};
+	
 	const update = (value) => {
 		setFormData({ ...formData, course_id: value });
 	};

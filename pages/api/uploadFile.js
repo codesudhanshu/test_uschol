@@ -1,59 +1,48 @@
 import S3 from "aws-sdk/clients/s3";
-const Promise = require("promise"); 
 const s3 = new S3({
-	region: process.env.AWS_REGION,
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	signatureVersion: "v4",
+  region: process.env.AWS_REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  signatureVersion: "v4",
 });
 
 export default async function Uploadfile(req, res) {
-	const { method } = req;
-	switch (method) {
-		case 'POST':
-			try {
-				let promises = [];
-				let { list, college_name } = req.body;
+  const { method } = req;
 
-				let college = college_name.replace(/\s+/g, '-');
-				college = college.toLowerCase();
+  switch (method) {
+    case "POST":
+      try {
+        const { list, college_name } = req.body;
 
-				list.forEach(async (file) => {
-					const fileParams = {
-						Bucket: process.env.BUCKET_NAME,
-						Key: `${college}/${file.name}`,
-						ContentType: file.type,
+        let college = college_name.replace(/\s+/g, '-').toLowerCase();
 
-					};
+        const promises = list.map((file) => {
+          const fileParams = {
+            Bucket: process.env.BUCKET_NAME,
+            Key: `${college}/${Date.now()}_${file.name.replace(/\s+/g, '_')}`,
+            ContentType: file.type,
+          };
+          return s3.getSignedUrlPromise("putObject", fileParams);
+        });
 
+        const signedUrls = await Promise.all(promises);
+        res.status(200).json(signedUrls);
+      } catch (error) {
+        console.error("Error generating signed URLs:", error);
+        res.status(500).json({ success: false, error: error.message });
+      }
+      break;
 
-
-					const promise = s3.getSignedUrlPromise("putObject", fileParams)
-					promises.push(promise);
-				});
-				await Promise.all(promises).then(function (data) {
-					res.send(data)
-				}).catch(function (err) {
-					res.send(err.stack);
-				})
-				break;
-
-
-			} catch (error) {
-				console.log(error)
-				res.status(400).json({ success: false })
-			}
-			break
-		default:
-			res.status(400).json({ success: false })
-			break
-	}
+    default:
+      res.status(405).json({ success: false, message: "Method Not Allowed" });
+      break;
+  }
 }
 
 export const config = {
-	api: {
-		bodyParser: {
-			sizeLimit: "8mb", // Set desired value here
-		},
-	},
+  api: {
+    bodyParser: {
+      sizeLimit: "100mb", // Adjust as needed
+    },
+  },
 };

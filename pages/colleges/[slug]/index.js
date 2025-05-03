@@ -390,7 +390,7 @@ export default function CollegeDetails(props) {
 									className="mt-auto flex items-center gap-x-6 mb-8"
 								>
 									<Typography.Link
-										className="px-8 py-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
+										className="px-8 py-3 mt-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
 										style={{
 											backgroundColor: "#7F56D9",
 											border: "none",
@@ -554,7 +554,7 @@ export default function CollegeDetails(props) {
 						}
 					</div>
 					<Typography.Link
-						className="px-8 py-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2 w-[170px] mt-6"
+						className="px-8 py-3  rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2 w-[170px] mt-6"
 						style={{
 							backgroundColor: "#7F56D9",
 							border: "none",
@@ -884,40 +884,34 @@ export default function CollegeDetails(props) {
 							>
 								Approvals & Accreditation
 							</Typography.Title>
-							<Row
-								gutter={[16, 16]}
-							>
-								{data.approvals?.map((approval, index) => (
-									<Col key={approval._id} xs={12} sm={8} md={6} lg={4}>
-										<Tooltip
-											trigger={["hover"]}
-											title={
-												<p
-													className="text-white"
-												>
-													{approval.name}
-												</p>
-											}
-											color="white"
-										>
-											<div
-												style={{
-													border: "1px solid rgba(127, 86, 217, 0.25)",
-												}}
-												className="h-full flex flex-col items-center justify-between rounded-lg p-4 bg-[#F7F4FF] shadow hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-102"
-											>
-												<Image
-													src={approval.image}
-													width={100}
-													height={100}
-													alt={approval.name}
-													className="h-24 w-24 object-contain"
-												/>
-											</div>
-										</Tooltip>
-									</Col>
-								))}
-							</Row>
+							<Row gutter={[16, 16]} justify="start" className="flex flex-wrap">
+  {data.approvals?.map((approval) => (
+    <div
+      key={approval._id}
+      className="w-[14.28%] max-[1200px]:w-1/4 max-[768px]:w-1/2 p-2"
+    >
+      <Tooltip
+        trigger={["hover"]}
+        title={<p className="text-white">{approval.name}</p>}
+        color="white"
+      >
+        <div
+          style={{ border: "1px solid rgba(127, 86, 217, 0.25)" }}
+          className="flex flex-col items-center justify-center rounded-md p-2 bg-[#F7F4FF] shadow hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.02]"
+        >
+          <Image
+            src={approval.image}
+            width={80}
+            height={80}
+            alt={approval.name}
+            className="h-20 w-20 object-contain"
+          />
+        </div>
+      </Tooltip>
+    </div>
+  ))}
+</Row>
+
 						</div>
 					</div>
 				)
@@ -946,41 +940,34 @@ export default function CollegeDetails(props) {
 							>
 								Placement Partners
 							</Typography.Title>
-							<Row
-								gutter={[16, 16]}
-								align={'middle'}
-							>
-								{data.placement_partners?.map((placement_partner, index) => (
-									<Col key={placement_partner._id} xs={12} sm={8} md={6} lg={4}>
-										<Tooltip
-											trigger={["hover"]}
-											title={
-												<p
-													className="text-black"
-												>
-													{placement_partner.title}
-												</p>
-											}
-											color="white"
-										>
-											<div
-												style={{
-													border: "1px solid rgba(127, 86, 217, 0.25)",
-												}}
-												className="h-full flex flex-col items-center justify-between rounded-lg p-4 bg-white shadow hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-102"
-											>
-												<Image
-													src={placement_partner.image}
-													width={100}
-													height={100}
-													alt={placement_partner.title}
-													className="h-24 w-24 object-contain"
-												/>
-											</div>
-										</Tooltip>
-									</Col>
-								))}
-							</Row>
+							<Row gutter={[16, 16]} align="middle" className="flex flex-wrap">
+  {data.placement_partners?.map((placement_partner) => (
+    <div
+      key={placement_partner._id}
+      className="w-[14.28%] max-[1200px]:w-1/4 max-[768px]:w-1/2 p-2"
+    >
+      <Tooltip
+        trigger={["hover"]}
+        title={<p className="text-black">{placement_partner.title}</p>}
+        color="white"
+      >
+        <div
+          style={{ border: "1px solid rgba(127, 86, 217, 0.25)" }}
+          className="h-full flex flex-col items-center justify-between rounded-lg bg-white shadow hover:shadow-xl transition-all duration-300 ease-in-out hover:scale-102"
+        >
+          <Image
+            src={placement_partner.image}
+            width={100}
+            height={100}
+            alt={placement_partner.title}
+            className="h-24 w-24 object-contain"
+          />
+        </div>
+      </Tooltip>
+    </div>
+  ))}
+</Row>
+
 						</div>
 					</div>
 				)

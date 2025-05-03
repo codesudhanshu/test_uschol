@@ -35,91 +35,71 @@ const Courses = ({ categories, tags, isMobile }) => {
 	}) {
 		return (
 			<div
-				onClick={() => router.push(`/colleges?tagId=${tag._id}`)}
-				className="p-3 min-h-[220px] md:h-full rounded-lg flex flex-col justify-center border-2 border-white bg-white hover:shadow-lg shadow-[#FFF0CA] cursor-pointer transition-all duration-300 hover:scale-105"
-			>
-				<div
-					className="w-full h-1/3 flex justify-between"
-				>
-					<div
-						className="w-1/3 md:w-1/2 h-full flex relative"
-					>
-						{/* <div
-							className="rounded-full h-8 w-8 md:h-24 md:w-24 bg-[#FFF0CA66]"
-						/> */}
-						{
-							index % 4 === 0 && (
-								<Image
-									alt="Tag Icon"
-									src={Course1SVG}
-									className="absolute w-4 h-4 md:w-10 md:h-10"
-									width={96}
-									height={96}
-								/>
-							)
-						}
-						{
-							index % 4 === 1 && (
-								<Image
-									alt="Tag Icon"
-									src={Course2SVG}
-									className="absolute  w-6 h-6 md:w-10 md:h-10"
-									width={96}
-									height={96}
-								/>
-							)
-						}
-						{
-							index % 4 === 2 && (
-								<Image
-									alt="Tag Icon"
-									src={Course3SVG}
-									className="absolute  w-6 h-6 md:w-10 md:h-10"
-									width={96}
-									height={96}
-								/>
-							)
-						}
-						{
-							index % 4 === 3 && (
-								<Image
-									alt="Tag Icon"
-									src={Course4SVG}
-									className="absolute w-6 h-6 md:w-10 md:h-10"
-									width={96}
-									height={96}
-								/>
-							)
-						}
-					</div>
-					<p
-						className="rounded-full px-2 md:px-4 py-1 bg-secondary h-fit text-[10px] md:text-md"
-					>
-						{tag?.duration} {tag?.duration_unit}
-					</p>
-				</div>
-				<div
-					className="w-full h-1/2 flex flex-col justify-evenly pt-2"
-				>
-					<p
-						className="text-xs md:text-base text-primary"
-					>
-						{tag?.collegeCount} Colleges
-					</p>
-					<h3
-						className="text-xs md:text-sm font-semibold text-[#101828]"
-					>
-						{tag?.tag_name}
-					</h3>
-					<Image
-						alt="Next Arrow"
-						src={NextArrowSVG}
-						className="w-4 h-4 md:w-8 md:h-8 self-end mb-2 bottom-0 absolute"
-						width={32}
-						height={32}
-					/>
-				</div>
-			</div>
+	onClick={() => router.push(`/colleges?tagId=${tag._id}`)}
+	className="p-2 md:p-3 h-[140px] md:h-full rounded-md flex flex-col justify-between border border-gray-200 bg-white hover:shadow-md shadow-[#FFF0CA] cursor-pointer transition-transform duration-300 hover:scale-105 relative"
+>
+	<div className="w-full flex justify-between items-start">
+		<div className="w-1/2 relative">
+			{index % 4 === 0 && (
+				<Image
+					alt="Tag Icon"
+					src={Course1SVG}
+					className="w-4 h-4 md:w-8 md:h-8"
+					width={64}
+					height={64}
+				/>
+			)}
+			{index % 4 === 1 && (
+				<Image
+					alt="Tag Icon"
+					src={Course2SVG}
+					className="w-4 h-4 md:w-8 md:h-8"
+					width={64}
+					height={64}
+				/>
+			)}
+			{index % 4 === 2 && (
+				<Image
+					alt="Tag Icon"
+					src={Course3SVG}
+					className="w-4 h-4 md:w-8 md:h-8"
+					width={64}
+					height={64}
+				/>
+			)}
+			{index % 4 === 3 && (
+				<Image
+					alt="Tag Icon"
+					src={Course4SVG}
+					className="w-4 h-4 md:w-8 md:h-8"
+					width={64}
+					height={64}
+				/>
+			)}
+		</div>
+		<p className="text-[9px] md:text-xs bg-secondary rounded-full px-2 py-[2px]">
+			{tag?.duration} {tag?.duration_unit}
+		</p>
+	</div>
+
+	<div className="flex flex-col gap-1 mt-2">
+		<p className="text-[10px] md:text-xs text-primary">
+			{tag?.collegeCount} Colleges
+		</p>
+		<h3 className="text-[11px] md:text-sm font-semibold text-[#101828]">
+			{tag?.tag_name}
+		</h3>
+	</div>
+
+	<Image
+		alt="Next Arrow"
+		src={NextArrowSVG}
+		className="w-3 h-3 md:w-6 md:h-6 absolute bottom-2 right-2"
+		width={24}
+		height={24}
+	/>
+</div>
+
 		)
 	}
 
