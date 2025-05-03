@@ -1,8 +1,12 @@
 {
   "extends": "next/core-web-vitals",
+  "env": {
+    "es6": true,
+    "node": true
+  },
   "rules": {
     "indent": "off",
-        "comma-dangle": 0,
+    "comma-dangle": 0,
     "no-undef": "error",
     "max-len": 0,
     "space-before-function-paren": [
