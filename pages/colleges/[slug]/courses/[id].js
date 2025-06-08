@@ -290,8 +290,19 @@ export default function Course(props) {
 								<div
 									className="flex flex-col h-full"
 								>
+
+									<Typography.Title
+										level={3}
+										className="font-semibold font-Poppins mt-2"
+										style={{
+											marginBottom: 0
+										}}
+									>
+										{props?.majors?.Major} from {data.college_name}
+									</Typography.Title>
+
 									<div
-										className="flex items-center gap-x-4"
+										className="flex items-center gap-x-4 mt-2 mb-2"
 									>
 										{
 											data?.tags?.length > 0 && (
@@ -317,15 +328,7 @@ export default function Course(props) {
 										</div>
 
 									</div>
-									<Typography.Title
-										level={3}
-										className="font-semibold font-Poppins mt-2"
-										style={{
-											marginBottom: 0
-										}}
-									>
-										{props?.majors?.Major} from {data.college_name}
-									</Typography.Title>
+
 									<p
 										className="mt-2"
 										style={{
@@ -373,12 +376,11 @@ export default function Course(props) {
 										<Typography.Link
 											className="px-4 mt-2 py-2 w-fit rounded font-normal text-center flex items-center gap-x-2 w-auto"
 											style={{
-												backgroundColor: specialization?.apply_link ? "#7F56D9" : "#ccc",
+												backgroundColor: "#7F56D9",
 												border: "none",
 												color: "#fff",
 												boxShadow: "none",
 											}}
-											disabled={!specialization?.apply_link}
 											onClick={() => {
 												if (cookies?.user) {
 													window.open(specialization?.apply_link, "_blank");
@@ -401,11 +403,29 @@ export default function Course(props) {
 									className="banner-img-wrapper h-full w-full relative"
 								>
 									<Image
-										src={data?.banner_image?.path}
-										loader={({ src }) =>
-											getS3Url(src)
-										}
-										alt={data?.college_name}
+										src={
+											data?.college_name?.toLowerCase().includes("amity")
+											  ? "/amity-university.jpeg"
+											  : data?.college_name?.toLowerCase().includes("lovely")
+											  ? "/lpu.jpeg"
+											  : data?.college_name?.toLowerCase().includes("nmims")
+											  ? "/nmims-university.jpeg"
+											  // For other colleges, use backend image if available
+											  : data?.banner_image?.path
+											  ? `https://upschol.s3.ap-south-1.amazonaws.com/${data.banner_image.path}`
+											  // Fallback if nothing matches
+											  : "/default.jpg"
+										  }
+										  alt={
+											data?.college_name?.toLowerCase().includes("amity")
+											  ? "amity mba online fees"
+											  : data?.college_name?.toLowerCase().includes("lovely")
+											  ? "Lpu Online MBA"
+											  : data?.college_name?.toLowerCase().includes("nmims")
+											  ? "nmims mba online fees"
+											  : data?.banneralt || data?.college_name || "default college image"
+										  }
+										
 										className="banner-img-college-details rounded-tr-xl rounded-br-xl h-full w-full object-cover object-center"
 										height={1500}
 										width={1500}
@@ -464,11 +484,28 @@ export default function Course(props) {
 						className="banner-img-wrapper h-[40vh] w-full relative"
 					>
 						<Image
-							src={data?.banner_image?.path}
-							loader={({ src }) =>
-								getS3Url(src)
-							}
-							alt={data?.college_name}
+							src={
+								data?.college_name?.toLowerCase().includes("amity")
+								  ? "/amity-university.jpeg"
+								  : data?.college_name?.toLowerCase().includes("lovely")
+								  ? "/lpu.jpeg"
+								  : data?.college_name?.toLowerCase().includes("nmims")
+								  ? "/nmims-university.jpeg"
+								  // For other colleges, use backend image if available
+								  : data?.banner_image?.path
+								  ? `https://upschol.s3.ap-south-1.amazonaws.com/${data.banner_image.path}`
+								  // Fallback if nothing matches
+								  : "/default.jpg"
+							  }
+							  alt={
+								data?.college_name?.toLowerCase().includes("amity")
+								  ? "amity mba online fees"
+								  : data?.college_name?.toLowerCase().includes("lovely")
+								  ? "Lpu Online MBA"
+								  : data?.college_name?.toLowerCase().includes("nmims")
+								  ? "nmims mba online fees"
+								  : data?.banneralt || data?.college_name || "default college image"
+							  }
 							className="rounded-xl h-full w-full object-cover object-center"
 							height={1500}
 							width={1500}
@@ -488,11 +525,6 @@ export default function Course(props) {
 							/>
 						</div>
 					</div>
-					<div className="flex mt-5">
-						{
-							getStars(data?.rating)
-						}
-					</div>
 					<Typography.Title
 						level={4}
 						className="font-semibold font-Poppins mt-5"
@@ -502,6 +534,12 @@ export default function Course(props) {
 					>
 						{data.college_name}
 					</Typography.Title>
+
+					<div className="flex mt-2 mb-2">
+						{
+							getStars(data?.rating)
+						}
+					</div>
 					<p
 						className="mt-3"
 						style={{
@@ -516,15 +554,15 @@ export default function Course(props) {
 					<Typography.Link
 						className="px-8 py-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2 w-[170px] mt-6"
 						style={{
-							backgroundColor: data.link ? "#7F56D9" : "#ccc",
+							backgroundColor: "#7F56D9",
 							border: "none",
 							color: "#fff",
 							boxShadow: "none",
 						}}
-						disabled={!data.link}
 						onClick={() => {
 							if (cookies?.user) {
 								window.open(data.link, "_blank");
+								setShowLeadModal(true);
 							} else {
 								setSelectedURL(data.link);
 								setShowLeadModal(true);

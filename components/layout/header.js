@@ -27,8 +27,10 @@ function CollegeCard({
 				className='bg-white rounded-xl shadow-xl flex flex-col h-40 p-3 cursor-pointer'
 				onClick={() => {
 					if (!cookies?.user) {
-						setSelectedCollege(college);
-						setShowModal(true);
+						// setSelectedCollege(college);
+						// setShowModal(true);
+						router.push(`/colleges/${college?.slug}`)
+						setIsExploreCourses(false);
 					} else {
 						router.push(`/colleges/${college?.slug}`)
 						setIsExploreCourses(false);

@@ -6,6 +6,7 @@ import {
 	Tooltip,
 	Spin,
 	Modal,
+	Button,
 } from "antd";
 import { AiFillStar } from "react-icons/ai";
 import { useRouter } from "next/router";
@@ -389,19 +390,23 @@ export default function CollegeDetails(props) {
 								<div
 									className="mt-auto flex items-center gap-x-6 mb-8"
 								>
-									<Typography.Link
-										className="px-8 py-3 mt-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
-										style={{
-											backgroundColor: "#7F56D9",
-											border: "none",
-											color: "#fff",
-											boxShadow: "none",
-										}}
-										
-									>
-										Enroll Now
-										<FaArrowRight />
-									</Typography.Link>
+									{props?.majors?.slice(0, 1)?.map((major) => (
+  <Button
+    key={major._id}
+    id={major._id}
+    className="px-8 py-3 mt-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
+    style={{
+      backgroundColor: "#7F56D9",
+      border: "none",
+      color: "#fff",
+      boxShadow: "none",
+    }}
+    onClick={() => router.push(`/colleges/${slug}/courses/${major._id}`)}
+  >
+    Enroll Now <FaArrowRight />
+  </Button>
+))}
+
 								</div>
 
 							</div>
@@ -415,16 +420,34 @@ export default function CollegeDetails(props) {
 							<div
 								className="banner-img-wrapper h-full w-full relative"
 							>
-								<Image
-									src={data?.banner_image?.path}
-									loader={({ src }) =>
-										`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
-									}
-									alt={data.banneralt ||data?.college_name}
-									className="banner-img-college-details hidden md:block rounded-tr-xl rounded-br-xl h-full w-full object-cover object-center"
-									height={1500}
-									width={1500}
-								/>
+	<Image
+  src={
+    data?.college_name?.toLowerCase().includes("amity")
+      ? "/amity-university.jpeg"
+      : data?.college_name?.toLowerCase().includes("lovely")
+      ? "/lpu.jpeg"
+      : data?.college_name?.toLowerCase().includes("nmims")
+      ? "/nmims-university.jpeg"
+      // For other colleges, use backend image if available
+      : data?.banner_image?.path
+      ? `https://upschol.s3.ap-south-1.amazonaws.com/${data.banner_image.path}`
+      // Fallback if nothing matches
+      : "/default.jpg"
+  }
+  alt={
+    data?.college_name?.toLowerCase().includes("amity")
+      ? "amity mba online fees"
+      : data?.college_name?.toLowerCase().includes("lovely")
+      ? "Lpu Online MBA"
+      : data?.college_name?.toLowerCase().includes("nmims")
+      ? "nmims mba online fees"
+      : data?.banneralt || data?.college_name || "default college image"
+  }
+  className="banner-img-college-details hidden md:block rounded-tr-xl rounded-br-xl h-full w-full object-cover object-center"
+  height={1500}
+  width={1500}
+/>
+
 								<div
 									className="absolute top-4 right-4 p-2 h-16 w-16 bg-white rounded-xl hidden md:block"
 								>
@@ -487,11 +510,28 @@ export default function CollegeDetails(props) {
 						className="banner-img-wrapper h-[40vh] w-full relative"
 					>
 						<Image
-							src={data?.banner_image?.path}
-							loader={({ src }) =>
-								`https://upschol.s3.ap-south-1.amazonaws.com/${src}`
-							}
-							alt={data.banneralt ||data?.college_name}
+							src={
+								data?.college_name?.toLowerCase().includes("amity")
+								  ? "/amity-university.jpeg"
+								  : data?.college_name?.toLowerCase().includes("lovely")
+								  ? "/lpu.jpeg"
+								  : data?.college_name?.toLowerCase().includes("nmims")
+								  ? "/nmims-university.jpeg"
+								  // For other colleges, use backend image if available
+								  : data?.banner_image?.path
+								  ? `https://upschol.s3.ap-south-1.amazonaws.com/${data.banner_image.path}`
+								  // Fallback if nothing matches
+								  : "/default.jpg"
+							  }
+							  alt={
+								data?.college_name?.toLowerCase().includes("amity")
+								  ? "amity mba online fees"
+								  : data?.college_name?.toLowerCase().includes("lovely")
+								  ? "Lpu Online MBA"
+								  : data?.college_name?.toLowerCase().includes("nmims")
+								  ? "nmims mba online fees"
+								  : data?.banneralt || data?.college_name || "default college image"
+							  }
 							className="rounded-xl h-full w-full object-cover object-center"
 							height={1500}
 							width={1500}
@@ -553,18 +593,22 @@ export default function CollegeDetails(props) {
 							))
 						}
 					</div>
-					<Typography.Link
-						className="px-8 py-3  rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2 w-[170px] mt-6"
-						style={{
-							backgroundColor: "#7F56D9",
-							border: "none",
-							color: "#fff",
-							boxShadow: "none",
-						}}
-					>
-						Enroll Now
-						<FaArrowRight />
-					</Typography.Link>
+					{props?.majors?.slice(0, 1)?.map((major) => (
+  <Button
+    key={major._id}
+    id={major._id}
+    className="px-8 py-3 mt-3 rounded-lg font-Poppins font-normal text-center text-base flex items-center gap-x-2"
+    style={{
+      backgroundColor: "#7F56D9",
+      border: "none",
+      color: "#fff",
+      boxShadow: "none",
+    }}
+    onClick={() => router.push(`/colleges/${slug}/courses/${major._id}`)}
+  >
+    Enroll Now <FaArrowRight />
+  </Button>
+))}
 					<div className="flex justify-center mt-5">
 						{data?.quick_facts.length > 0 && (
 							<div
