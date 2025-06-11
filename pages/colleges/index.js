@@ -62,15 +62,32 @@ function CollegeCard({
 			<div
 				className="w-full lg:w-1/4 rounded-lg overflow-hidden h-80"
 			>
-				<Image
-					key={college?._id}
-					className="h-full w-full object-cover object-center"
-					loader={({ src }) => getS3Url(src)}
-					src={`${college?.banner_image?.path}`}
-					alt={college?.college_name}
-					width={512}
-					height={512}
-				/>
+						<Image
+  key={college?._id}
+  className="h-full w-full object-cover object-center"
+  src={
+    college?.college_name?.toLowerCase().includes("amity")
+      ? "/amity-university.jpeg"
+      : college?.college_name?.toLowerCase().includes("lovely")
+      ? "/lpu.jpeg"
+      : college?.college_name?.toLowerCase().includes("nmims")
+      ? "/nmims-university.jpeg"
+      : college?.banner_image?.path
+      ? `https://upschol.s3.ap-south-1.amazonaws.com/${college.banner_image.path}`
+      : "/default.jpg"
+  }
+  alt={
+    college?.college_name?.toLowerCase().includes("amity")
+      ? "amity mba online fees"
+      : college?.college_name?.toLowerCase().includes("lovely")
+      ? "Lpu Online MBA"
+      : college?.college_name?.toLowerCase().includes("nmims")
+      ? "nmims mba online fees"
+      : college?.banneralt || college?.college_name || "default college image"
+  }
+  width={512}
+  height={512}
+/>
 			</div>
 			<div
 				className="flex flex-col w-full lg:w-3/4 gap-y-4"

@@ -19,9 +19,10 @@ import { SlBadge } from "react-icons/sl";
 import Slider from "react-slick";
 import LeadModal from "../../../../components/lead_Modal";
 import tagsModel from "../../../../model/tags";
+import courseModel from "../../../../model/course";
 import { useCookies } from "react-cookie";
 import collegeModel from "../../../../model/collegeModel";
-import { FaLocationDot, FaChevronRight, FaChevronLeft } from "react-icons/fa6";
+import { FaArrowRightLong, FaLocationDot, FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import { getS3Url } from "../../../../lib/s3";
 
 export async function getServerSideProps(context) {
