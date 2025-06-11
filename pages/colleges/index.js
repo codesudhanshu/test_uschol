@@ -52,8 +52,9 @@ function CollegeCard({
 			className="w-full p-4 shadow-lg rounded-lg flex flex-col lg:flex-row gap-4 cursor-pointer hover:shadow-2xl transition-all duration-300 bg-white"
 			onClick={() => {
 				if (!cookies.user) {
-					setCollege(college)
-					setShowModal(true)
+					// setCollege(college)
+					// setShowModal(true)
+					router.push(`/colleges/${college?.slug}`)
 				} else {
 					router.push(`/colleges/${college?.slug}`)
 				}
