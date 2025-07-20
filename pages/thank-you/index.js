@@ -53,22 +53,21 @@ const Thank = () =>{
 			</center>
 			<br />
 			<div className="button">
-				<a href="https://upschol.com/">
-					<center>
-						{" "}
-						<button
-							type="button"
-							style={{
-								padding: 10,
-								border: "1px solid black",
-								backgroundColor: "#002B5C",
-								color: "#fff"
-							}}
-						>
-							For More Information kindly Visit Us
-						</button>
-					</center>
-				</a>
+				<center>
+  <button
+    type="button"
+    onClick={() => window.history.back()}
+    style={{
+      padding: 10,
+      border: "1px solid black",
+      backgroundColor: "#002B5C",
+      color: "#fff"
+    }}
+  >
+    Visit Website
+  </button>
+</center>
+
 				<br />
 				<br />
 			</div>
