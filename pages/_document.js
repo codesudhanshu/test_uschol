@@ -29,7 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			<body>
 				{/* Google Tag Manager (noscript) */}
 				<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTZVZR2W"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+height="0" width="0" style={{display:"none",visibility:"hidden"}}></iframe></noscript>
 				<Main />
 				<NextScript />
 			</body>
