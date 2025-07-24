@@ -537,6 +537,9 @@ return(<><Head><meta charset="utf-8" />
 					<p>
 						© 2019 All Rights Reserved. |<a href="">Privacy Policy</a>
 					</p>
+				<p style={{marginLeft:"4em"}}>
+						Contact us Now - <a href="tel://+917678313034">+91 7678313034</a>
+					</p>
 				</div>
 			</div>
 		</footer>
