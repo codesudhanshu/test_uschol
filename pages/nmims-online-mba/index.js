@@ -139,12 +139,21 @@ return(<><Head><meta charset="utf-8" />
 			<main style={{overflow:"hidden"}}>
 	<header>
 	<div className={`${styles.nmins_header} ${styles.color_red}`}>
-			<div className={styles.Lnmimshead}>
-				<div className={styles.nmims_logo}>
-					<a href="">
-						<img className={styles.img} src="/nmims/nmims_logo.png" />
-					</a>
-				</div>
+			<div className={styles.Lnmimshead} >
+				<div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4">
+  <a href="">
+    <img src="/nmims/nmims_logo.png" alt="NMIMS Logo" className="h-12 w-auto" style={{objectFit:"contain"}} />
+  </a>
+
+  <a
+    href="tel://+917678313034"
+    className="inline-block bg-[#772879] text-white sm:px-5 sm:py-2 px-2 py-2 rounded-md font-bold font-sans transition duration-300 hover:bg-[#6a226c] text-center"
+  >
+    📞 Apply Now - +91 7678313034
+  </a>
+</div>
+
+
 			</div>
 			<i className={styles.clearB}/>
 		</div>
@@ -533,14 +542,16 @@ return(<><Head><meta charset="utf-8" />
 	</div></div>
 		<footer>
 			<div className={styles.footersection}>
-				<div className={styles.container}>
-					<p>
-						© 2019 All Rights Reserved. |<a href="">Privacy Policy</a>
-					</p>
-				<p style={{marginLeft:"4em"}}>
-						Contact us Now - <a href="tel://+917678313034">+91 7678313034</a>
-					</p>
-				</div>
+				<div className={`block sm:flex items-center ${styles.container}`}>
+  <p>
+    © 2025 All Rights Reserved. | <a href="">Privacy Policy</a>
+  </p>
+  <p className="mt-2 sm:mt-0 sm:ml-16">
+    Contact us Now - <a href="tel://+917678313034">+91 7678313034</a>
+  </p>
+</div>
+
+
 			</div>
 		</footer>
 	</div>
