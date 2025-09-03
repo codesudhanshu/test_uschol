@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function ScholarshipFair() {
   const [showPopup, setShowPopup] = useState(false);
@@ -16,7 +17,7 @@ export default function ScholarshipFair() {
     },
     {
       title: "Data Science",
-      description: "Data Science courses teach valuable analytical and technical skills, enabling students to harness data for impactful decision-making and thrive in today's data-driven industries.",
+      description: "Data Science courses teach valuable analytical and technical skills, enabling students to harness data for impactful decision-making and thrive in today&apos;s data-driven industries.",
       icon: "📊"
     },
     {
@@ -75,7 +76,7 @@ export default function ScholarshipFair() {
   const faqs = [
     {
       question: "What is the Upschol Scholarship Fair 2025?",
-      answer: "It's India's biggest virtual scholarship fair connecting students with educational institutions and scholarship providers."
+      answer: "It&apos;s India&apos;s biggest virtual scholarship fair connecting students with educational institutions and scholarship providers."
     },
     {
       question: "Who can attend the Scholarship Fair?",
@@ -131,7 +132,7 @@ export default function ScholarshipFair() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-              India's Biggest
+              India&apos;s Biggest
               <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mt-2">
                 Scholarship Fair 2025
               </span>
@@ -198,34 +199,39 @@ export default function ScholarshipFair() {
           <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
             Exhibitors at Upschol Scholarship Fair 2025 showcase educational institutions, programs, and career opportunities, offering students insights and guidance for their academic and professional futures.
           </p>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-  {exhibitors.map((exhibitor, index) => (
-    <div
-      key={index}
-      className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group min-h-[180px] text-center"
-    >
-      <div className="w-30 h-20 mb-4 flex items-center justify-center">
-        <img
-          src={exhibitor.logo}
-          alt={`${exhibitor.name} logo`}
-          className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300 mx-auto"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
-        <span
-          className="font-bold text-xl text-gray-800 group-hover:text-purple-600 transition-colors hidden text-center"
-        >
-          {exhibitor.name}
-        </span>
-      </div>
-      <span className="font-medium text-sm text-gray-700 text-center mt-auto">
-        {exhibitor.name}
-      </span>
-    </div>
-  ))}
-</div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+            {exhibitors.map((exhibitor, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group min-h-[180px] text-center"
+              >
+                <div className="w-30 h-20 mb-4 flex items-center justify-center">
+                  <Image
+                    src={exhibitor.logo}
+                    alt={`${exhibitor.name} logo`}
+                    width={120}
+                    height={80}
+                    className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300 mx-auto"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      const fallback = e.target.nextSibling;
+                      if (fallback && fallback.classList) {
+                        fallback.style.display = 'block';
+                      }
+                    }}
+                  />
+                  <span
+                    className="font-bold text-xl text-gray-800 group-hover:text-purple-600 transition-colors hidden text-center"
+                  >
+                    {exhibitor.name}
+                  </span>
+                </div>
+                <span className="font-medium text-sm text-gray-700 text-center mt-auto">
+                  {exhibitor.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -331,7 +337,7 @@ export default function ScholarshipFair() {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
         <div className="relative max-w-4xl mx-auto text-center py-10 px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Ready to Find Your Perfect Scholarship?</h2>
-          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India's biggest scholarship fair and unlock opportunities worth ₹100 Crore.</p>
+          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India&apos;s biggest scholarship fair and unlock opportunities worth ₹100 Crore.</p>
           <button 
             onClick={openPopup}
             className="bg-white text-purple-600 px-12 py-5 rounded-xl font-bold text-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-2xl"
@@ -354,7 +360,7 @@ export default function ScholarshipFair() {
             
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Register for Scholarship Fair</h3>
-              <p className="text-gray-600">Join India's biggest scholarship fair and unlock opportunities worth ₹100 Crore</p>
+              <p className="text-gray-600">Join India&apos;s biggest scholarship fair and unlock opportunities worth ₹100 Crore</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
