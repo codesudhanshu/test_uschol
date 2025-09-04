@@ -174,6 +174,34 @@ export async function sendEnquiryNotificationmaninmims({ name, email, phoneNumbe
     }
 }
 
+
+export async function sendEnquiryNotificationscholarshipfair({ name, email, phone, college }) {
+    const recipientEmail = "upscholindia@gmail.com";
+    const subject = "New Enquiry in UpSchol.com";
+    const message = `Name: ${name},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phone}`;
+
+    const params = {
+        Source: process.env.SES_EMAIL_NOREPLY,
+        Destination: {
+            ToAddresses: [recipientEmail],
+        },
+        Message: {
+            Subject: { Data: subject },
+            Body: {
+                Text: { Data: message }
+            }
+        }
+    };
+
+    try {
+        await ses.sendEmail(params).promise();
+        console.log(`Enquiry email sent successfully. ${params.Destination.ToAddresses}`);
+    } catch (error) {
+        console.error("Error sending enquiry email:", error);
+    }
+}
+
+
 export async function sendEnquiryNotificationgetintouch({ lead }) {
     const recipientEmail = "upscholindia@gmail.com";
     const subject = "New Enquiry in UpSchol.com";

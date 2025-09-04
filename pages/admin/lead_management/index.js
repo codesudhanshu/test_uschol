@@ -9,6 +9,7 @@ import amityModel from "../../../model/amityModel";
 import manipalModel from "../../../model/manipalModel";
 import lpuModel from "../../../model/lpuModel";
 import nmimsModel from "../../../model/nmimsModel";
+import scholarshipfairmodel from "../../../model/scholarshipfairmodel"
 
 export async function getServerSideProps() {
   await dbConnect();
@@ -18,6 +19,7 @@ export async function getServerSideProps() {
   const manipalLeads = await manipalModel.find({}).lean();
   const lpuLeads = await lpuModel.find({}).lean();
   const nmimsLeads = await nmimsModel.find({}).lean();
+   const scholarshipfairmodelLeads = await scholarshipfairmodel.find({}).lean();
 
   const formattedLeads = [
     ...mainLeads.map(e => ({
@@ -79,6 +81,18 @@ export async function getServerSideProps() {
       dob: "-",
       submitTime: e.date,
       source: "NMIMS"
+    })),
+     ...scholarshipfairmodelLeads.map(e => ({
+      ...e,
+      name: e.name,
+      phone: e.phone,
+      email: e.email,
+      state: "-",
+      course: "-",
+      gender: "-",
+      dob: "-",
+      submitTime: e.date,
+      source: "Scholarship fair"
     }))
   ];
 
