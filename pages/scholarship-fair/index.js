@@ -419,7 +419,7 @@ export default function ScholarshipFair() {
             
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Register for Scholarship Fair</h3>
-              <p className="text-gray-600">Join India's biggest scholarship fair and unlock opportunities worth ₹100 Crore</p>
+              <p className="text-gray-600">Join India&apos;s biggest scholarship fair and unlock opportunities worth ₹100 Crore</p>
             </div>
 
             {message && (
