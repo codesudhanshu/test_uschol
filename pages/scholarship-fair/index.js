@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import Next.js Image component
 
 export default function ScholarshipFair() {
   const [showPopup, setShowPopup] = useState(false);
@@ -82,7 +83,7 @@ export default function ScholarshipFair() {
   const faqs = [
     {
       question: "What is the Upschol Scholarship Fair 2025?",
-      answer: "It's India's biggest virtual scholarship fair connecting students with educational institutions and scholarship providers."
+      answer: "It&apos;s India&apos;s biggest virtual scholarship fair connecting students with educational institutions and scholarship providers."
     },
     {
       question: "Who can attend the Scholarship Fair?",
@@ -182,7 +183,7 @@ export default function ScholarshipFair() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-              India's Biggest
+              India&apos;s Biggest
               <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mt-2">
                 Scholarship Fair 2025
               </span>
@@ -258,9 +259,11 @@ export default function ScholarshipFair() {
                 <div key={index} className={`flex-shrink-0 px-4 ${isMobile ? 'w-1/2' : 'w-1/5'}`}>
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center hover:shadow-xl transition-all duration-300 group min-h-[180px] text-center">
                     <div className="w-30 h-20 mb-4 flex items-center justify-center">
-                      <img
+                      <Image
                         src={exhibitor.logo}
                         alt={`${exhibitor.name} logo`}
+                        width={120}
+                        height={80}
                         className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300 mx-auto"
                         onError={(e) => {
                           e.target.style.display = 'none';
@@ -396,7 +399,7 @@ export default function ScholarshipFair() {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
         <div className="relative max-w-4xl mx-auto text-center py-10 px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Ready to Find Your Perfect Scholarship?</h2>
-          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India's biggest scholarship fair and unlock opportunities worth ₹100 Crore.</p>
+          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India&apos;s biggest scholarship fair and unlock opportunities worth ₹100 Crore.</p>
           <button 
             onClick={openPopup}
             className="bg-white text-purple-600 px-12 py-5 rounded-xl font-bold text-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-2xl"
@@ -501,4 +504,4 @@ export default function ScholarshipFair() {
       )}
     </div>
   );
-} 
+}
