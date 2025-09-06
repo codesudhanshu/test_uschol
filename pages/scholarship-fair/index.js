@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function ScholarshipFair() {
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopupdownloadbook, setshowPopupdownloadbook] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -74,29 +75,6 @@ export default function ScholarshipFair() {
   // Duplicate courses for seamless infinite carousel
   const carouselCourses = [...courses, ...courses, ...courses];
 
-  const roadmaps = [
-    {
-      title: "MBA Roadmap",
-      subtitle: "Build Businesses, Lead Teams",
-      icon: "💼"
-    },
-    {
-      title: "Engineering Roadmap",
-      subtitle: "Solve Real-World Problems with Tech",
-      icon: "⚙️"
-    },
-    {
-      title: "Medicine & Healthcare Roadmap",
-      subtitle: "Heal Lives, Lead Science",
-      icon: "🏥"
-    },
-    {
-      title: "Emerging Fields Roadmap",
-      subtitle: "Break the Mold: New-Age Careers",
-      icon: "🚀"
-    }
-  ];
-
   const exhibitors = [
     { name: "Amity", logo: "/amity_logo.png" },
     { name: "NMIMS", logo: "/nmims_logo.png" },
@@ -147,17 +125,43 @@ export default function ScholarshipFair() {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
+  // Form validation function
+  const isFormValid = () => {
+    const { name, email, phone } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10}$/;
+    
+    return (
+      name.trim().length > 0 &&
+      emailRegex.test(email) &&
+      phoneRegex.test(phone)
+    );
+  };
+
   // Handle form input changes
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    // Phone number validation - only allow digits and limit to 10
+    if (name === 'phone') {
+      const cleanedValue = value.replace(/\D/g, '').slice(0, 10);
+      setFormData({
+        ...formData,
+        [name]: cleanedValue
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
   // Handle form submission with API call
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isFormValid()) return;
+    
     setLoading(true);
     
     try {
@@ -170,6 +174,46 @@ export default function ScholarshipFair() {
       if (response.ok) {
         // Redirect to thank you page on success
         window.location.href = "/thank-you";
+      } else {
+        const data = await response.json();
+        setMessage(data.error || "An error occurred. Please try again.");
+      }
+    } catch (error) {
+      setMessage("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+   const handleSubmit1 = async (e) => {
+    e.preventDefault();
+    if (!isFormValid()) return;
+    
+    setLoading(true);
+    
+    try {
+      const response = await fetch("/api/scholarship-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        // Close the popup first
+        setshowPopupdownloadbook(false);
+        
+        // Download the PDF
+        const link = document.createElement('a');
+        link.href = '/OnlineUGandPG.pdf';
+        link.download = 'OnlineUGandPG.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Small delay before redirect to ensure download starts
+        setTimeout(() => {
+          window.location.href = "/thank-you";
+        }, 500);
       } else {
         const data = await response.json();
         setMessage(data.error || "An error occurred. Please try again.");
@@ -206,6 +250,13 @@ export default function ScholarshipFair() {
     setFormData({ name: '', email: '', phone: '' });
   };
 
+  const openguide = () => setshowPopupdownloadbook(true);
+  const closePopupguide = () => {
+    setshowPopupdownloadbook(false);
+    setMessage('');
+    setFormData({ name: '', email: '', phone: '' });
+  };
+
   return (
     <>
     <Head>
@@ -232,7 +283,7 @@ export default function ScholarshipFair() {
             
             <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto mb-12 leading-relaxed">
               Scholarships upto <span className="text-yellow-400 font-bold">100%</span> • 
-              Career Guidance • Placement Supports with Experts
+              Career Guidance • Placement Supports
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -432,50 +483,50 @@ export default function ScholarshipFair() {
                 </svg>
               </button>
             </div>
-            
-            {/* Carousel Indicators */}
-            {/* <div className="flex justify-center mt-4">
-              {courses.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-3 w-3 rounded-full mx-1 transition-colors duration-200 ${
-                    coursesCurrentSlide === index ? 'bg-purple-600' : 'bg-gray-300'
-                  }`}
-                  onClick={() => setCoursesCurrentSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div> */}
           </div>
         </div>
       </div>
 
-      {/* Roadmap Section */}
-      <div className="py-5 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-gray-900 mb-6 text-center">Career Guidance Roadmap</h2>
-        <p className="text-xl text-gray-600 mb-16 text-center max-w-3xl mx-auto">
-          Feeling stuck or confused about your future? Explore these roadmaps to find clarity.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {roadmaps.map((roadmap, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 text-white group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-xl">{roadmap.icon}</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 text-lg">{roadmap.title}</h3>
-                  <p className="text-sm text-gray-600">{roadmap.subtitle}</p>
-                </div>
-              </div>
-              <a href="/OnlineUGandPG.pdf" target='_blank' download>
-                <button className="flex items-center text-purple-600 font-medium mt-4 group-hover:text-purple-700 transition-colors">
-                  Download PDF <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </a>
+      {/* Career Guidance Roadmap Section - Updated with Responsive Flexbox */}
+      <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <section className="bg-[#14081E] text-white p-6 sm:p-8 rounded-lg">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            {/* Content Section */}
+            <div className="flex-1">
+              <h2 className="text-2xl sm:text-2xl lg:text-2xl font-bold mb-2 sm:mb-4">
+                Career Guidance
+              </h2>
+              <h3 className="text-lg sm:text-xl lg:text-xl font-semibold leading-loose">
+                Feeling stuck or confused about your future? Download this guidebook to find the right direction for your journey
+              </h3>
             </div>
-          ))}
-        </div>
+            
+            {/* Button Section */}
+            <div className="w-full lg:w-auto flex justify-center lg:justify-end">
+              <button 
+                onClick={openguide}
+                className="bg-white text-[#14081E] hover:bg-gray-100 px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto justify-center"
+              >
+                <span>Download Guidebook</span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="w-5 h-5" 
+                  aria-hidden="true"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* FAQ Section */}
@@ -565,7 +616,7 @@ export default function ScholarshipFair() {
               
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                  Phone Number *
+                  Phone Number * (10 digits)
                 </label>
                 <input
                   type="tel"
@@ -575,15 +626,23 @@ export default function ScholarshipFair() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your phone number"
+                  placeholder="Enter 10 digit phone number"
+                  maxLength="10"
                 />
+                {formData.phone && formData.phone.length !== 10 && (
+                  <p className="text-red-500 text-sm mt-1">Phone number must be exactly 10 digits</p>
+                )}
               </div>
               
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !isFormValid()}
                 onClick={handleSubmit}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
+                className={`w-full py-3 rounded-lg font-semibold text-lg transition-all duration-200 transform flex items-center justify-center ${
+                  isFormValid() && !loading
+                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 hover:scale-105'
+                    : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white cursor-not-allowed'
+                }`}
               >
                 {loading ? (
                   <>
@@ -595,6 +654,108 @@ export default function ScholarshipFair() {
                   </>
                 ) : (
                   "Register Now (Free)"
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Download Book Popup Form */}
+      {showPopupdownloadbook && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full relative transform transition-all duration-300">
+            <button 
+              onClick={closePopupguide}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors text-2xl"
+            >
+              ×
+            </button>
+            
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Download Career Guide</h3>
+              <p className="text-gray-600">Get your free career guidance roadmap and find the right direction for your journey.</p>
+            </div>
+
+            {message && (
+              <div className={`mb-4 p-3 rounded-lg ${message.includes('error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                {message}
+              </div>
+            )}
+
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  placeholder="Enter your full name"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  placeholder="Enter your email"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number * (10 digits)
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  placeholder="Enter 10 digit phone number"
+                  maxLength="10"
+                />
+                {formData.phone && formData.phone.length !== 10 && (
+                  <p className="text-red-500 text-sm mt-1">Phone number must be exactly 10 digits</p>
+                )}
+              </div>
+              
+              <button
+                type="submit"
+                disabled={loading || !isFormValid()}
+                onClick={handleSubmit1}
+                className={`w-full py-3 rounded-lg font-semibold text-lg transition-all duration-200 transform flex items-center justify-center ${
+                  isFormValid() && !loading
+                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 hover:scale-105'
+                    : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white cursor-not-allowed'
+                }`}
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  "Download Guide & Register"
                 )}
               </button>
             </div>
