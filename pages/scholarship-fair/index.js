@@ -224,7 +224,7 @@ export default function ScholarshipFair() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-              India's Biggest
+              India&apos;s Biggest
               <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mt-2">
                 Scholarship Fair 2025
               </span>
@@ -498,7 +498,7 @@ export default function ScholarshipFair() {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
         <div className="relative max-w-4xl mx-auto text-center py-10 px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Ready to Find Your Perfect Scholarship?</h2>
-          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India's biggest scholarship fair and unlock opportunities.</p>
+          <p className="text-xl text-purple-100 mb-10 max-w-3xl mx-auto leading-relaxed">Join India&apos;s biggest scholarship fair and unlock opportunities.</p>
           <button 
             onClick={openPopup}
             className="bg-white text-purple-600 px-12 py-5 rounded-xl font-bold text-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-2xl"
@@ -521,7 +521,7 @@ export default function ScholarshipFair() {
             
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Register for Scholarship Fair</h3>
-              <p className="text-gray-600">Join India's biggest scholarship fair and unlock opportunities.</p>
+              <p className="text-gray-600">Join India&apos;s biggest scholarship fair and unlock opportunities.</p>
             </div>
 
             {message && (
