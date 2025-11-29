@@ -203,7 +203,7 @@ return(
   onClick={() => setIsVisible(false)} 
   className="cursor-pointer hover:opacity-70 transition-opacity"
   size={24}
-  style={{marginTop: "-3em"}}
+  style={{marginTop: "-2em"}}
 />
                   </div>
             </div>
