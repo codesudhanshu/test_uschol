@@ -187,7 +187,10 @@ return(
             </div>
             <div>
               <X
-                onClick={() => setIsVisible(false)} 
+                onClick={() => {
+                   console.log('X clicked'); // Debug ke liye
+                   setIsVisible(false)
+                }} 
                 style={{cursor: 'pointer', marginTop: '-2em'}}
                 size={24}
               />
