@@ -9,8 +9,6 @@ import Script from "next/script";
 // import "react-owl-carousel/dist/assets/owl.theme.default.css";
 import Link from 'next/link';
 import {X} from 'lucide-react'
-
-
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
 const Lpu = () =>{
@@ -104,7 +102,8 @@ const Lpu = () =>{
                  setMessage(data.error);
              }
          };
-      
+        
+  
   
         // Hide form on scroll
         useEffect(() => {
@@ -191,7 +190,7 @@ return(
           <div className="col-md-1" />
         <div style={{padding:'1em'}}>
           <div id={`${styles.form_ftr} form-ftr`}>
-             <div class="flex justify-between items-center">
+           <div class="flex justify-between items-center">
               <div>
                 <h3 className={styles.frm_heading}>Free Counseling</h3>
             <center>
@@ -203,7 +202,7 @@ return(
   onClick={() => setIsVisible(false)} 
   className="cursor-pointer hover:opacity-70 transition-opacity"
   size={24}
-  style={{marginTop: "-2em"}}
+  style={{marginTop: "-3em"}}
 />
                   </div>
             </div>
