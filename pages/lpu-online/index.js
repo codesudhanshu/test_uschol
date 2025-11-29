@@ -14,6 +14,7 @@ import {X} from 'lucide-react'
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
 const Lpu = () =>{
+   const [isVisible, setIsVisible] = useState(true); // By default open
   const [activeTab, setActiveTab] = useState("UG");
    const [selectedCourse, setSelectedCourse] = useState("PG");
     useEffect(() => {
@@ -103,8 +104,7 @@ const Lpu = () =>{
                  setMessage(data.error);
              }
          };
-        
-         const [isVisible, setIsVisible] = useState(true); // By default open
+      
   
         // Hide form on scroll
         useEffect(() => {
