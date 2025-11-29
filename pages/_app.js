@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
 	const isAdmin = router.pathname.includes('admin');
 
 	const hideLayoutPaths = [
-		'/lpu-online-learning-platform',
+		'/lpu-online',
 		'/amity-online-program',
 		'/nmims-online-mba',
 		'/manipal-online-mba-program',
