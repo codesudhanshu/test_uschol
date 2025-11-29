@@ -8,6 +8,9 @@ import Script from "next/script";
 // import "react-owl-carousel/dist/assets/owl.carousel.css";
 // import "react-owl-carousel/dist/assets/owl.theme.default.css";
 import Link from 'next/link';
+import {X} from 'lucide-react'
+
+
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
 const Lpu = () =>{
@@ -188,10 +191,22 @@ return(
           <div className="col-md-1" />
         <div style={{padding:'1em'}}>
           <div id={`${styles.form_ftr} form-ftr`}>
-            <h3 className={styles.frm_heading}>Free Counseling</h3>
+             <div class="flex justify-between items-center">
+              <div>
+                <h3 className={styles.frm_heading}>Free Counseling</h3>
             <center>
               <p>Have Doubt? Talk FREE to Our Expert</p>
             </center>
+              </div>
+                <div>
+                    <X
+  onClick={() => setIsVisible(false)} 
+  className="cursor-pointer hover:opacity-70 transition-opacity"
+  size={24}
+  style={{marginTop: "-3em"}}
+/>
+                  </div>
+            </div>
             <hr />
             <form
               method="post"
