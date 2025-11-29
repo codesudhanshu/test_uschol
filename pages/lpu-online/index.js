@@ -173,12 +173,12 @@ return(
     </button>
   )}
 
-  {/* Form Container (Visible by default, hides on scroll) */}
+  {/* Form Container */}
   {isVisible && (
     <div className={styles.formContainer}>
       <div style={{padding:'1em'}}>
         <div id={`${styles.form_ftr} form-ftr`}>
-          <div className="flex justify-between items-center">
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <div>
               <h3 className={styles.frm_heading}>Free Counseling</h3>
               <center>
@@ -188,9 +188,8 @@ return(
             <div>
               <X
                 onClick={() => setIsVisible(false)} 
-                className="cursor-pointer hover:opacity-70 transition-opacity"
+                style={{cursor: 'pointer', marginTop: '-2em'}}
                 size={24}
-                style={{marginTop: "-2em"}}
               />
             </div>
           </div>
