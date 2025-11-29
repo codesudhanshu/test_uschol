@@ -165,209 +165,196 @@ return(
   </div>
  </div>  
 
- <div className={styles.applyNowContainer}>
-      {/* Floating Apply Now Button */}
-      {!isVisible && (
-        <button className={styles.floatingButton} onClick={() => setIsVisible(true)}>
-          Apply Now
-        </button>
-      )}
+<div className={styles.applyNowContainer}>
+  {/* Floating Apply Now Button */}
+  {!isVisible && (
+    <button className={styles.floatingButton} onClick={() => setIsVisible(true)}>
+      Apply Now
+    </button>
+  )}
 
-      {/* Form Container (Visible by default, hides on scroll) */}
-      {isVisible && (
-        <div className={styles.formContainer}>
-          <div className={styles.applyNowContainer}>
-      {/* Floating Apply Now Button */}
-      {!isVisible && (
-        <button className={styles.floatingButton} onClick={() => setIsVisible(true)}>
-          Apply Now
-        </button>
-      )}
-
-      {/* Form Container (Visible by default, hides on scroll) */}
-      {isVisible && (
-        <div className={styles.formContainer}>
-          <div className="col-md-1" />
-        <div style={{padding:'1em'}}>
-          <div id={`${styles.form_ftr} form-ftr`}>
-           <div class="flex justify-between items-center">
-              <div>
-                <h3 className={styles.frm_heading}>Free Counseling</h3>
-            <center>
-              <p>Have Doubt? Talk FREE to Our Expert</p>
-            </center>
-              </div>
-                <div>
-                    <X
-  onClick={() => setIsVisible(false)} 
-  className="cursor-pointer hover:opacity-70 transition-opacity"
-  size={24}
-  style={{marginTop: "-3em"}}
-/>
-                  </div>
-            </div>
-            <hr />
-            <form
-              method="post"
-              name="form"
-              id="enquiry-form"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="text"
-                name="name"
-                id="full_name"
-                placeholder="Enter Your Name"
-                className="form-control"
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />  <br />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter Your Email"
-                className="form-control"
-                value={formData.email}
-                onChange={handleChange}
-              />  <br />
-              <input
-                type="tel"
-                id="phone"
-                name="phoneNumber"
-                className="form-control"
-                placeholder="Enter your phone number"
-                required
-                maxLength="10"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-              />
-              <br />
-              <select
-                name="course"
-                className="form-control"
-                id="course"
-                required
-                value={formData.course}
-                onChange={handleChange}
-              >
-                <option value="" hidden="">
-                  Select Your Course
-                </option>
-                <option value="BA">BA</option>
-                <option value="BCOM">B.COM</option>
-                <option value="BCA">BCA</option>
-                <option value="MBA">MBA</option>
-                <option value="MA">MA</option>
-                <option value="MCOM">M.COM</option>
-                <option value="MSC">MSC</option>
-                <option value="MCA">MCA</option>
-              </select>
-              <br />
-              <select
-                name="location"
-                className="form-control"
-                id="location"
-                required
-                value={formData.location}
-                onChange={handleChange}
-              >
-                <option value="" hidden="">
-                  Select Your State
-                </option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar </option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat </option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand </option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh </option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya </option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha </option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim </option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura </option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand </option>
-                <option value="West Bengal">West Bengal </option>
-              </select>
-              <input
-                type="hidden"
-                name="source"
-                id="source"
-                placeholder="Enter your source"
-                className="form-control"
-                defaultValue="LPU"
-                required=""
-              />
-              <br />
-              <input
-                type="hidden"
-                name="sub_source"
-                id="sub_source"
-                className="form-control"
-                defaultValue=""
-              />
-              <input
-                type="hidden"
-                name="utm_source"
-                id="utm_source"
-                className="form-control"
-                defaultValue=""
-              />
-              <input
-                type="hidden"
-                name="utm_medium"
-                id="utm_medium"
-                className="form-control"
-                defaultValue=""
-              />
-              <input
-                type="hidden"
-                name="utm_term"
-                id="utm_term"
-                className="form-control"
-                defaultValue=""
-              />
+  {/* Form Container (Visible by default, hides on scroll) */}
+  {isVisible && (
+    <div className={styles.formContainer}>
+      <div style={{padding:'1em'}}>
+        <div id={`${styles.form_ftr} form-ftr`}>
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className={styles.frm_heading}>Free Counseling</h3>
               <center>
-              <button
-                  type="submit"
-                  name="submit"
-                  className={styles.sub_btn}
-                  disabled={loading} // Disable while loading
-                >               
-                  {loading ? (
-                    <div className={styles.loader}></div> // Show loader when loading is true
-                  ) : (
-                    "Submit"
-                  )}
-              </button>
-
+                <p>Have Doubt? Talk FREE to Our Expert</p>
               </center>
-            </form>
+            </div>
+            <div>
+              <X
+                onClick={() => setIsVisible(false)} 
+                className="cursor-pointer hover:opacity-70 transition-opacity"
+                size={24}
+                style={{marginTop: "-2em"}}
+              />
+            </div>
           </div>
+          <hr />
+          <form
+            method="post"
+            name="form"
+            id="enquiry-form"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="text"
+              name="name"
+              id="full_name"
+              placeholder="Enter Your Name"
+              className="form-control"
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your Email"
+              className="form-control"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <br />
+            <input
+              type="tel"
+              id="phone"
+              name="phoneNumber"
+              className="form-control"
+              placeholder="Enter your phone number"
+              required
+              maxLength="10"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+            />
+            <br />
+            <select
+              name="course"
+              className="form-control"
+              id="course"
+              required
+              value={formData.course}
+              onChange={handleChange}
+            >
+              <option value="" hidden="">
+                Select Your Course
+              </option>
+              <option value="BA">BA</option>
+              <option value="BCOM">B.COM</option>
+              <option value="BCA">BCA</option>
+              <option value="MBA">MBA</option>
+              <option value="MA">MA</option>
+              <option value="MCOM">M.COM</option>
+              <option value="MSC">MSC</option>
+              <option value="MCA">MCA</option>
+            </select>
+            <br />
+            <select
+              name="location"
+              className="form-control"
+              id="location"
+              required
+              value={formData.location}
+              onChange={handleChange}
+            >
+              <option value="" hidden="">
+                Select Your State
+              </option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+            </select>
+            <input
+              type="hidden"
+              name="source"
+              id="source"
+              placeholder="Enter your source"
+              className="form-control"
+              defaultValue="LPU"
+              required=""
+            />
+            <br />
+            <input
+              type="hidden"
+              name="sub_source"
+              id="sub_source"
+              className="form-control"
+              defaultValue=""
+            />
+            <input
+              type="hidden"
+              name="utm_source"
+              id="utm_source"
+              className="form-control"
+              defaultValue=""
+            />
+            <input
+              type="hidden"
+              name="utm_medium"
+              id="utm_medium"
+              className="form-control"
+              defaultValue=""
+            />
+            <input
+              type="hidden"
+              name="utm_term"
+              id="utm_term"
+              className="form-control"
+              defaultValue=""
+            />
+            <center>
+              <button
+                type="submit"
+                name="submit"
+                className={styles.sub_btn}
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className={styles.loader}></div>
+                ) : (
+                  "Submit"
+                )}
+              </button>
+            </center>
+          </form>
         </div>
-        </div>
-      )}
+      </div>
     </div>
-        </div>
-      )}
-    </div>
+  )}
+</div>
+
 
 {/*  startslider */}
 <div id={styles.desk_sl}>
