@@ -233,7 +233,7 @@ return(
               </div>
               
               <p className="mb-4">
-                Get UGC Entitled Degree from India's Top Ranked University
+                Get UGC Entitled Degree from India&apos;s Top Ranked University
               </p>
               
               <div className="d-none d-sm-block">
