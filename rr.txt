@@ -1,0 +1,635 @@
+  <style jsx>{`
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inherit;
+}
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.button_main {
+    background: #f58220;
+    color: #fff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.ranked-img img {
+    width: auto !important;
+}
+
+.ranked-img {
+    border-radius: 10px;
+    width: 165px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    box-shadow: 0px 3px 9px #eee;
+}
+
+.seciton_padding {
+    padding: 65px 0;
+}
+
+.banner-content p {
+    font-size: 19px;
+    margin-top: 21px;
+}
+
+.banner-content h1 {
+    font-size: 47px;
+}
+
+.ranked-body {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 50px;
+    padding-right: 12px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+}
+
+.top_ranked {
+    background: aliceblue;
+}
+
+.headingbox {
+    margin-bottom: 50px;
+}
+
+.headingbox p {
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.reason_card h5 {
+    color: #444;
+}
+
+.reason_text {
+    font-size: 14px;
+}
+
+.reason_icon {
+    color: #22c55e;
+}
+
+.reason_card {
+    background: #fff;
+    box-shadow: 0px 7px 11px #ddd;
+    border-radius: 10px;
+    padding: 30px 15px 60px;
+    border-top: 1px solid #eee;
+    height: 100%;
+    position: relative;
+}
+
+.certificate {
+    position: absolute;
+    top: -37px;
+    left: 0;
+    width: 100%;
+    height: 113%;
+    box-shadow: 0px 7px 11px #00000014;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.reason_card.orange_bg {
+    background: #f5822a;
+}
+
+.reason_card.orange_bg li {
+    color: #fff;
+    margin-bottom: 23px;
+}
+
+.footer_reason {
+    position: absolute;
+    bottom: 15px;
+    width: 90%;
+}
+
+.footer_reason .button_main {
+    width: 100%;
+}
+
+section.certificate_sec {
+    background: #f58220;
+    color: #fff;
+}
+
+ul.certificat_list li {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+ul.certificat_list li small {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+ul.certificat_list {
+    border-left: 2px solid;
+    list-style: none;
+    margin-left: 15px;
+}
+
+.specialization_card {
+    box-shadow: 0px 9px 11px #00000029;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #555;
+}
+
+.specialization_card h5 {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.special_text {
+    font-size: 14px;
+}
+
+.special_text span {
+    font-weight: 600;
+}
+
+.admission_sec {
+    background: #f8f8f8;
+}
+
+.steps_card {
+    width: 33.3%;
+    text-align: center;
+    padding: 0 5px;
+    color: #505050;
+}
+
+a.btn.bg-white:hover {
+    color: #333;
+}
+
+.steps_card p {
+    font-size: 14px;
+    padding: 0px 5px;
+}
+
+.steps_card:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    border: 1px solid #fb5d28;
+}
+
+.steps_card span {
+    display: block;
+    margin-bottom: 35px;
+}
+
+.steps_card span:after {
+    border: 2px solid #fb5d28;
+    width: 20px;
+    height: 20px;
+    background-color: #fff !important;
+    top: 8px !important;
+}
+
+.steps_card span:before,
+.steps_card span:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    background: #fb5d28;
+    border-radius: 50px;
+    transform: translate(-50%, 115%);
+    left: 50%;
+}
+
+.steps_card span:before {
+    height: 10px;
+    width: 10px;
+    z-index: 10;
+}
+
+.ourLearner .item {
+    border: 1px solid #eee;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    filter: grayscale(1);
+    cursor: pointer;
+    transition: all ease-in-out;
+}
+
+.ourLearner .item:hover {
+    filter: grayscale(0);
+}
+
+.tollfree_sec {
+    background: #f58220;
+}
+
+.common_form .form-control {
+    height: 41px;
+    margin-bottom: 15px;
+}
+
+.common_form form {
+    padding: 0px 30px 25px;
+}
+
+.form_img {
+    height: 103%;
+    position: absolute;
+    left: -4px;
+    top: -15px;
+}
+
+.form_img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.sticky-footer button {
+    width: 50%;
+    margin: 0;
+}
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+section.reason_sec.seciton_padding {
+    padding-bottom: 85px;
+}
+
+.fee_card {
+    width: 40%;
+    padding: 25px;
+}
+
+.feecard_first {
+    width: 20%;
+}
+
+.fee_card h4 {
+    color: #f58220;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #f58220;
+}
+
+.nav-pills .nav-link {
+    color: #f58220;
+    font-weight: 500;
+    border: 1px solid;
+}
+
+div#pills-tabContent label i {
+    position: absolute;
+    left: 0;
+    color: #f58220;
+    top: 5px;
+}
+
+div#pills-tabContent label {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 25px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+section.banner-thanku {
+    overflow: hidden;
+}
+
+section.banner-thanku:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #0000008c;
+}
+
+.logo-thanku {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 10;
+    background: #fff;
+    width: 200px;
+}
+
+section.banner-thanku img {
+    width: 100%;
+}
+
+.banner_tnq p {
+    font-size: 21px;
+}
+
+.banner_tnq h1 {
+    font-weight: 800;
+    font-size: 50px;
+}
+
+.banner_tnq {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+a.callnowtnq {
+    background: linear-gradient(161.7deg, #f7415f -8.74%, #fe734e 94.03%);
+    color: #fff;
+    border: 2px solid;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+}
+
+.testimonial-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 7px 9px #00000024;
+}
+
+.testi_img {
+    height: 210px;
+}
+
+.test_body {
+    padding: 35px 15px 25px;
+    position: relative;
+}
+
+.test_body p {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+button.watchvideo {
+    background: transparent;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 10px;
+    border: 2px solid;
+    color: #ff280a;
+}
+
+.test_body .fa.fa-play {
+    display: flex;
+    width: 45px;
+    height: 30px;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -15px;
+    cursor: pointer;
+}
+
+.backtohome {
+    text-align: center;
+    padding: 25px 0;
+}
+
+.backtohome a {
+    border: 2px solid red;
+    border-radius: 25px;
+    padding: 3px 12px;
+    color: red;
+    transition: all .3s ease-in-out;
+}
+
+a:hover,
+a {
+    text-decoration: none;
+}
+
+section.ranking-sec {
+    background: aliceblue;
+    padding: 65px 0;
+}
+
+.ranking-box {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 5px 9px #00000024;
+}
+
+.testimonial-sec .btn-close {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    font-weight: 100;
+    width: 20px;
+    height: 20px;
+    background: #f00;
+    opacity: 1;
+    z-index: 9;
+    color: #fff;
+    transition: all .3s ease-in-out;
+    border: transparent;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section.sample-certificate {
+    background: #ea580c;
+    color: #fff;
+}
+
+.certificate_box {
+    position: absolute;
+    top: 50%;
+    box-shadow: 0px 5px 9px #0000002e;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.certificate-content ul p {
+    font-size: 14px;
+}
+
+.certificate-content {
+    padding: 60px 0px 60px 30px;
+}
+
+.certificate-content ul {
+    border-left: 2px solid;
+    padding-left: 18px;
+    list-style: none;
+}
+
+.courseList span {
+    font-size: 14px;
+    color: #f58220;
+    border: 1px solid;
+    padding: 3px 10px;
+    border-radius: 18px;
+    font-weight: 600;
+}
+
+ul#pills-tab .nav-link {
+    color: #f58220;
+    border: 1px solid;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff !important;
+    background: #f58220;
+}
+
+.course_card {
+    box-shadow: 0px 9px 11px #00000014;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course_card p {
+    color: #575757;
+    font-size: 14px;
+}
+
+.course_card p i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+section.specialization_sec {
+    padding: 65px 0;
+}
+
+`}
+  </style>
+
+
+        <section className="reason_sec section_padding pb-5">
+      <div className="container-fluid px-0 px-md-3">
+        <div className="row">
+          <div className="col-12">
+            <div className="headingbox text-center mb-5">
+              <div className="mb-4 flex justify-center">
+                <Image 
+                  src="/lpu/cropped-download-1.png"
+                  alt="LPU Online Logo"
+                  width={200}
+                  height={60}
+                  className="img-fluid"
+                  unoptimized // External image के लिए
+                />
+              </div>
+              <p className="fs-4 text-muted">
+                Reasons to pursue Online Program from LPU Online.
+              </p>
+            </div>
+          </div>
+
+          {/* Orange Background Card - Left Side */}
+          <div className="col-lg-3 col-md-6 mt-4">
+            <div className="reason_card orange_bg h-100">
+              <ul className="reason_text list-unstyled m-0">
+                {orangeCardPoints.map((point, index) => (
+                  <li key={index} className="d-flex mb-3">
+                    <div className="me-3 flex-shrink-0">
+                     <Dot />
+                    </div>
+                    <span className="text-white">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Other Reason Cards */}
+          {reasonsData.map((reason, index) => (
+            <div key={index} className="col-lg-3 col-md-6 mt-4">
+              <div className="reason_card h-100 d-flex flex-column">
+                <div className="d-flex gap-3 align-items-center mb-4">
+                  <div className="flex-shrink-0">
+                    <Image
+                      src={reason.icon}
+                      alt={reason.title}
+                      width={40}
+                      height={40}
+                      className="img-fluid opacity-75"
+                    />
+                  </div>
+                  <h5 className="mb-0 fw-bold text-dark">{reason.title}</h5>
+                </div>
+
+                <div className="flex-grow-1">
+                  {reason.points.map((point, idx) => (
+                    <div key={idx} className="d-flex gap-3 mb-3">
+                      
+                      <div className="reason_text text-muted">
+                        {point}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-3 footer_reason pt-3 border-top">
+                  <button 
+                    className="btn button_main w-100" 
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#apply_download"
+                  >
+                    Know More
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>

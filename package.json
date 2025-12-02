@@ -33,6 +33,7 @@
     "dotenv": "^16.0.3",
     "fs": "^0.0.1-security",
     "jose": "^4.11.4",
+    "lucide-react": "^0.555.0",
     "moment": "^2.29.4",
     "mongoose": "^6.10.0",
     "next": "^13.5.6",

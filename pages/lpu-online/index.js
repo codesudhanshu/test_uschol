@@ -1,6 +1,11 @@
 import Head from 'next/head';
 import styles from '../../styles/lpu.module.css';
 import styled from '../../styles/manipal.module.css'
+import LPUbanner from "../../public/LPUbanner.jpg";
+import buildpng from "../../public/Build.png";
+import Holisticpng from "../../public/Holistic.png";
+import Academic from "../../public/Academic.png";
+
 import { useEffect, useState } from 'react';
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router"; // Import useRouter 
@@ -8,7 +13,9 @@ import Script from "next/script";
 // import "react-owl-carousel/dist/assets/owl.carousel.css";
 // import "react-owl-carousel/dist/assets/owl.theme.default.css";
 import Link from 'next/link';
-import {X} from 'lucide-react'
+import {Dot, X} from 'lucide-react'
+import Image from 'next/image';
+import LPUModalForm from '../../components/LPUModalForm';
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), { ssr: false });
 
 const Lpu = () =>{
@@ -113,6 +120,54 @@ const Lpu = () =>{
           return () => window.removeEventListener("scroll", handleScroll);
         }, []);
 
+          const courses = [
+    { name: 'MBA', href: '#All-Course' },
+    { name: 'M.Com', href: '#All-Course' },
+    { name: 'MCA', href: '#All-Course' },
+    { name: 'MA', href: '#All-Course' },
+    { name: 'M.Sc', href: '#All-Course' },
+    { name: 'BCA', href: '#All-Course' },
+    { name: 'BBA', href: '#All-Course' },
+    { name: 'BA', href: '#All-Course' },
+  ];
+
+  const reasonsData = [
+    {
+      title: "Learning Pedagogy",
+      icon: Holisticpng, 
+      points: [
+        "The university provides a mobile application to schedule your classes and the courseware.",
+        "Interactive live lectures with real-time interaction with students and faculty.",
+        "Get the advantage of recorded content that you can watch anytime & anywhere."
+      ],
+      bgColor: "white"
+    },
+    {
+      title: "Online Examinations",
+      icon: Academic, 
+      points: [
+        "The university provides the advantage of online exams via LMS Portal."
+      ],
+      bgColor: "white"
+    },
+    {
+      title: "Proper Mentorship With Academic Advisors",
+      icon: buildpng, 
+      points: [
+        "The classes will be taken by experienced & dedicated professors.",
+        "The curriculum is also designed by industry experts."
+      ],
+      bgColor: "white"
+    }
+  ];
+
+  const orangeCardPoints = [
+    "Award-Winning LMS (Learning Management System) with interactive features",
+    "Industry Oriented Curriculum Designed By Experts",
+    "Personalized Mentorship with excellent guidance",
+    "Placement Assistance for fulfilling career Requirement"
+  ];
+
 return(
     <>
  <Head>
@@ -152,232 +207,117 @@ return(
       </a>
     </div> 
     <div>
-          <button className={styles.buttons_form} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}
-          >Admission closing soon! Enroll Now!</button>
+          <button className={styles.buttons_form}   onClick={() => window.openLPUModal && window.openLPUModal()}
+          >Enroll Now!</button>
     </div>
   </div>
  </div>  
 
-<div className={styles.applyNowContainer}>
-  {/* Floating Apply Now Button */}
-  {!isVisible && (
-    <button className={styles.floatingButton} onClick={() => setIsVisible(true)}>
-      Apply Now
-    </button>
-  )}
-
-  {/* Form Container */}
-  {isVisible && (
-    <div className={styles.formContainer}>
-      <div style={{padding:'1em'}}>
-        <div id={`${styles.form_ftr} form-ftr`}>
-          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <div>
-              <h3 className={styles.frm_heading}>Free Counseling</h3>
-              <center>
-                <p>Have Doubt? Talk FREE to Our Expert</p>
-              </center>
-            </div>
-            <div>
-              <X
-                onClick={() => {
-                   console.log('X clicked'); // Debug ke liye
-                   setIsVisible(false)
-                }} 
-                style={{cursor: 'pointer', marginTop: '-2em'}}
-                size={24}
-              />
+<section className="home_banner section_padding">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-sm-6">
+            <div className="banner-content">
+              <h1 className="fw-bold">LPU Online Degree Programmes</h1>
+              
+              <div className="courseList mb-4">
+                {courses.map((course, index) => (
+                  <Link
+                    key={index} 
+                    href={course.href}
+                    className="course-link"
+                  >
+                    <span>{course.name}</span>
+                  </Link>
+                ))}
+              </div>
+              
+              <p className="mb-4">
+                Get UGC Entitled Degree from India's Top Ranked University
+              </p>
+              
+              <div className="d-none d-sm-block">
+                <div className="d-flex flex-wrap gap-3 mb-3">
+                  <button 
+                    className="btn button_main autoClick text-white" 
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#brochur_download"
+                    onClick={() => window.openLPUModal && window.openLPUModal()}
+                  >
+                    Download Brochure
+                  </button>
+                  
+                  <button 
+                    className="btn button_main" 
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#apply_download"
+                     onClick={() => window.openLPUModal && window.openLPUModal()}
+                  >
+                    Apply Now
+                  </button>
+                </div>
+                
+                <h5 className="text-danger mt-1 mt-sm-4 mb-2">
+                  Admission Closing In 5 Days
+                </h5>
+                
+                {/* <small className="d-inline-block px-3 py-1 text-white bg-danger rounded">
+                  Avail No Cost EMI's
+                </small> */}
+              </div>
             </div>
           </div>
-          <hr />
-          <form
-            method="post"
-            name="form"
-            id="enquiry-form"
-            onSubmit={handleSubmit}
-          >
-            <input
-              type="text"
-              name="name"
-              id="full_name"
-              placeholder="Enter Your Name"
-              className="form-control"
-              required
-              value={formData.name}
-              onChange={handleChange}
-            />
-            <br />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter Your Email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <br />
-            <input
-              type="tel"
-              id="phone"
-              name="phoneNumber"
-              className="form-control"
-              placeholder="Enter your phone number"
-              required
-              maxLength="10"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-            />
-            <br />
-            <select
-              name="course"
-              className="form-control"
-              id="course"
-              required
-              value={formData.course}
-              onChange={handleChange}
-            >
-              <option value="" hidden="">
-                Select Your Course
-              </option>
-              <option value="BA">BA</option>
-              <option value="BCOM">B.COM</option>
-              <option value="BCA">BCA</option>
-              <option value="MBA">MBA</option>
-              <option value="MA">MA</option>
-              <option value="MCOM">M.COM</option>
-              <option value="MSC">MSC</option>
-              <option value="MCA">MCA</option>
-            </select>
-            <br />
-            <select
-              name="location"
-              className="form-control"
-              id="location"
-              required
-              value={formData.location}
-              onChange={handleChange}
-            >
-              <option value="" hidden="">
-                Select Your State
-              </option>
-              <option value="Andhra Pradesh">Andhra Pradesh</option>
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-              <option value="Assam">Assam</option>
-              <option value="Bihar">Bihar</option>
-              <option value="Chhattisgarh">Chhattisgarh</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Goa">Goa</option>
-              <option value="Gujarat">Gujarat</option>
-              <option value="Haryana">Haryana</option>
-              <option value="Himachal Pradesh">Himachal Pradesh</option>
-              <option value="Jharkhand">Jharkhand</option>
-              <option value="Karnataka">Karnataka</option>
-              <option value="Kerala">Kerala</option>
-              <option value="Madhya Pradesh">Madhya Pradesh</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Manipur">Manipur</option>
-              <option value="Meghalaya">Meghalaya</option>
-              <option value="Mizoram">Mizoram</option>
-              <option value="Nagaland">Nagaland</option>
-              <option value="Odisha">Odisha</option>
-              <option value="Punjab">Punjab</option>
-              <option value="Rajasthan">Rajasthan</option>
-              <option value="Sikkim">Sikkim</option>
-              <option value="Tamil Nadu">Tamil Nadu</option>
-              <option value="Telangana">Telangana</option>
-              <option value="Tripura">Tripura</option>
-              <option value="Uttar Pradesh">Uttar Pradesh</option>
-              <option value="Uttarakhand">Uttarakhand</option>
-              <option value="West Bengal">West Bengal</option>
-            </select>
-            <input
-              type="hidden"
-              name="source"
-              id="source"
-              placeholder="Enter your source"
-              className="form-control"
-              defaultValue="LPU"
-              required=""
-            />
-            <br />
-            <input
-              type="hidden"
-              name="sub_source"
-              id="sub_source"
-              className="form-control"
-              defaultValue=""
-            />
-            <input
-              type="hidden"
-              name="utm_source"
-              id="utm_source"
-              className="form-control"
-              defaultValue=""
-            />
-            <input
-              type="hidden"
-              name="utm_medium"
-              id="utm_medium"
-              className="form-control"
-              defaultValue=""
-            />
-            <input
-              type="hidden"
-              name="utm_term"
-              id="utm_term"
-              className="form-control"
-              defaultValue=""
-            />
-            <center>
-              <button
-                type="submit"
-                name="submit"
-                className={styles.sub_btn}
-                disabled={loading}
-              >
-                {loading ? (
-                  <div className={styles.loader}></div>
-                ) : (
-                  "Submit"
-                )}
-              </button>
-            </center>
-          </form>
+          
+          <div className="col-sm-6">
+            <div className="banner_img overflow-hidden rounded">
+              {/* Next.js Image component का use करें */}
+              <Image
+                src={LPUbanner}
+                alt="LPU Online Degree Programmes Banner"
+                width={600}
+                height={400}
+                className="img-fluid"
+                priority
+              />
+            </div>
+            
+            <div className="d-block d-sm-none mt-4 text-center">
+              <div className="d-flex flex-column gap-3 mb-3">
+                <button 
+                  className="btn button_main autoClick w-100" 
+                  type="button" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#brochur_download"
+                     onClick={() => window.openLPUModal && window.openLPUModal()}
+                >
+                
+                  Download Brochure
+                </button>
+                
+                <button 
+                  className="btn button_main w-100" 
+                  type="button" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#apply_download"
+                     onClick={() => window.openLPUModal && window.openLPUModal()}
+                >
+                  Apply Now
+                </button>
+              </div>
+              
+              <h5 className="text-danger mt-3" style={{ fontSize: '16px' }}>
+                Admission Closing In 5 Days
+              </h5>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  )}
-</div>
+    </section>
 
+<LPUModalForm />
 
-{/*  startslider */}
-<div id={styles.desk_sl}>
-        <OwlCarousel
-          className={styles.owl_carousel}
-          loop
-          margin={10}
-          items={1}
-          autoplay
-          autoplayTimeout={4000}
-          animateOut="fadeOut"
-          dots={false}
-          nav={false} 
-        >
-          {["/lpu/banner5.jpeg","/lpu/banner4.jpg","/lpu/img1.jpg", "/lpu/img2.jpg", "/lpu/img3.jpg"].map((src, index) => (
-            <div key={index} className={styles.slide}>
-              <img src={src} width="100%" alt={`LPU Banner ${index + 1}`} />
-            </div>
-          ))}
-        </OwlCarousel>
-      </div>
 
   {/*  endslider */}
 
@@ -591,6 +531,8 @@ return(
             )}
         </div>
 
+        
+
         <div className={styles.org_ad}>
     <div className="container">
       <div className="row">
@@ -620,6 +562,7 @@ return(
     </div>
     {/*end of container*/}
   </div>
+
 
 
   <section id={styles.facility}>
@@ -767,35 +710,42 @@ return(
                 <option value="" hidden="">
                   Select Your State
                 </option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar </option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat </option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand </option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh </option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya </option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha </option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim </option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura </option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand </option>
-                <option value="West Bengal">West Bengal </option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Haryana">Haryana</option>
+  <option value="Rajasthan">Rajasthan</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="West Bengal">West Bengal</option>
+  <option value="Telangana">Telangana</option>
+  <option value="Jharkhand">Jharkhand</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Kerala">Kerala</option>
+  <option value="Odisha">Odisha</option>
+  <option value="Tamil Nadu">Tamil Nadu</option>
+  <option value="Andhra Pradesh">Andhra Pradesh</option>
+  <option value="Punjab">Punjab</option>
+  <option value="Uttarakhand">Uttarakhand</option>
+  <option value="Assam">Assam</option>
+  <option value="Chandigarh">Chandigarh</option>
+  <option value="Meghalaya">Meghalaya</option>
+  <option value="Chhattisgarh">Chhattisgarh</option>
+  <option value="Goa">Goa</option>
+  <option value="Tripura">Tripura</option>
+  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+  <option value="Himachal Pradesh">Himachal Pradesh</option>
+  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+  <option value="Lakshadweep">Lakshadweep</option>
+  <option value="Manipur">Manipur</option>
+  <option value="Nagaland">Nagaland</option>
+  <option value="Puducherry">Puducherry</option>
+  <option value="Mizoram">Mizoram</option>
+  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+  <option value="Sikkim">Sikkim</option>
+  <option value="Ladakh">Ladakh</option>
               </select>
               <input
                 type="hidden"
@@ -861,6 +811,7 @@ return(
     </div>
     {/*end of container*/}
   </section>
+
   <section id="advantage">
     <div className="container">
       <div className="row"  >
@@ -1021,7 +972,7 @@ return(
             </div>
           </div>
 </section>
-<section className={`${styled.notmobb}${styles.cont}`} style={{overflow:'hidden',padding:"5em 3em 5em 3em"}} id={styles.phonenod}>
+<section className={`${styled.notmobb}${styles.cont}`} style={{overflow:'hidden',padding:"5em 3em 5em 0em"}} id={styles.phonenod}>
 <div className={`${styled.containerfluid}`} >
             <div className="row" >
               <div className="col-lg-12">
@@ -1165,12 +1116,14 @@ return(
             </div>
           </div>
 </section>
+
   <section
     id="programmes-st"
     style={{
       backgroundImage: "url(/lpu/LPU-imag-4.jpg)",
       backgroundSize: "cover"
     }}
+    className='pt-5'
   >
      <div className="container">
       <div className="row">
@@ -1260,6 +1213,8 @@ return(
     </div>
     {/*end of container*/}
   </section>
+
+  
   <div className={styles.features}>
     <div className="container">
       <div className="row">
@@ -1607,35 +1562,43 @@ return(
                 <option value="" hidden="">
                   Select Your State
                 </option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar </option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat </option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand </option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh </option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya </option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha </option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim </option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura </option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand </option>
-                <option value="West Bengal">West Bengal </option>
+               <option value="">Select State</option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Haryana">Haryana</option>
+  <option value="Rajasthan">Rajasthan</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="West Bengal">West Bengal</option>
+  <option value="Telangana">Telangana</option>
+  <option value="Jharkhand">Jharkhand</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Kerala">Kerala</option>
+  <option value="Odisha">Odisha</option>
+  <option value="Tamil Nadu">Tamil Nadu</option>
+  <option value="Andhra Pradesh">Andhra Pradesh</option>
+  <option value="Punjab">Punjab</option>
+  <option value="Uttarakhand">Uttarakhand</option>
+  <option value="Assam">Assam</option>
+  <option value="Chandigarh">Chandigarh</option>
+  <option value="Meghalaya">Meghalaya</option>
+  <option value="Chhattisgarh">Chhattisgarh</option>
+  <option value="Goa">Goa</option>
+  <option value="Tripura">Tripura</option>
+  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+  <option value="Himachal Pradesh">Himachal Pradesh</option>
+  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+  <option value="Lakshadweep">Lakshadweep</option>
+  <option value="Manipur">Manipur</option>
+  <option value="Nagaland">Nagaland</option>
+  <option value="Puducherry">Puducherry</option>
+  <option value="Mizoram">Mizoram</option>
+  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+  <option value="Sikkim">Sikkim</option>
+  <option value="Ladakh">Ladakh</option>
               </select>
               <input
                 type="hidden"
@@ -1786,6 +1749,558 @@ return(
     </div>
     {/*end of container*/}
   </section>
+  <style jsx>{`
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inherit;
+}
+
+.modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.button_main {
+    background: #f58220;
+    color: #fff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.ranked-img img {
+    width: auto !important;
+}
+
+.ranked-img {
+    border-radius: 10px;
+    width: 165px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    box-shadow: 0px 3px 9px #eee;
+}
+
+.seciton_padding {
+    padding: 65px 0;
+}
+
+.banner-content p {
+    font-size: 19px;
+    margin-top: 21px;
+}
+
+.banner-content h1 {
+    font-size: 47px;
+}
+
+.ranked-body {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    font-size: 14px;
+    padding-left: 50px;
+    padding-right: 12px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+}
+
+.top_ranked {
+    background: aliceblue;
+}
+
+.headingbox {
+    margin-bottom: 50px;
+}
+
+.headingbox p {
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+.reason_card h5 {
+    color: #444;
+}
+
+.reason_text {
+    font-size: 14px;
+}
+
+.reason_icon {
+    color: #22c55e;
+}
+
+.reason_card {
+    background: #fff;
+    box-shadow: 0px 7px 11px #ddd;
+    border-radius: 10px;
+    padding: 30px 15px 60px;
+    border-top: 1px solid #eee;
+    height: 100%;
+    position: relative;
+}
+
+.certificate {
+    position: absolute;
+    top: -37px;
+    left: 0;
+    width: 100%;
+    height: 113%;
+    box-shadow: 0px 7px 11px #00000014;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.reason_card.orange_bg {
+    background: #f5822a;
+}
+
+.reason_card.orange_bg li {
+    color: #fff;
+    margin-bottom: 23px;
+}
+
+.footer_reason {
+    position: absolute;
+    bottom: 15px;
+    width: 90%;
+}
+
+.footer_reason .button_main {
+    width: 100%;
+}
+
+section.certificate_sec {
+    background: #f58220;
+    color: #fff;
+}
+
+ul.certificat_list li {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+ul.certificat_list li small {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+ul.certificat_list {
+    border-left: 2px solid;
+    list-style: none;
+    margin-left: 15px;
+}
+
+.specialization_card {
+    box-shadow: 0px 9px 11px #00000029;
+    border-radius: 10px;
+    overflow: hidden;
+    color: #555;
+}
+
+.specialization_card h5 {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.special_text {
+    font-size: 14px;
+}
+
+.special_text span {
+    font-weight: 600;
+}
+
+.admission_sec {
+    background: #f8f8f8;
+}
+
+.steps_card {
+    width: 33.3%;
+    text-align: center;
+    padding: 0 5px;
+    color: #505050;
+}
+
+a.btn.bg-white:hover {
+    color: #333;
+}
+
+.steps_card p {
+    font-size: 14px;
+    padding: 0px 5px;
+}
+
+.steps_card:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    border: 1px solid #fb5d28;
+}
+
+.steps_card span {
+    display: block;
+    margin-bottom: 35px;
+}
+
+.steps_card span:after {
+    border: 2px solid #fb5d28;
+    width: 20px;
+    height: 20px;
+    background-color: #fff !important;
+    top: 8px !important;
+}
+
+.steps_card span:before,
+.steps_card span:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    background: #fb5d28;
+    border-radius: 50px;
+    transform: translate(-50%, 115%);
+    left: 50%;
+}
+
+.steps_card span:before {
+    height: 10px;
+    width: 10px;
+    z-index: 10;
+}
+
+.ourLearner .item {
+    border: 1px solid #eee;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    filter: grayscale(1);
+    cursor: pointer;
+    transition: all ease-in-out;
+}
+
+.ourLearner .item:hover {
+    filter: grayscale(0);
+}
+
+.tollfree_sec {
+    background: #f58220;
+}
+
+.common_form .form-control {
+    height: 41px;
+    margin-bottom: 15px;
+}
+
+.common_form form {
+    padding: 0px 30px 25px;
+}
+
+.form_img {
+    height: 103%;
+    position: absolute;
+    left: -4px;
+    top: -15px;
+}
+
+.form_img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.sticky-footer button {
+    width: 50%;
+    margin: 0;
+}
+
+.sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+section.reason_sec.seciton_padding {
+    padding-bottom: 85px;
+}
+
+.fee_card {
+    width: 40%;
+    padding: 25px;
+}
+
+.feecard_first {
+    width: 20%;
+}
+
+.fee_card h4 {
+    color: #f58220;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #f58220;
+}
+
+.nav-pills .nav-link {
+    color: #f58220;
+    font-weight: 500;
+    border: 1px solid;
+}
+
+div#pills-tabContent label i {
+    position: absolute;
+    left: 0;
+    color: #f58220;
+    top: 5px;
+}
+
+div#pills-tabContent label {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 25px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+section.banner-thanku {
+    overflow: hidden;
+}
+
+section.banner-thanku:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #0000008c;
+}
+
+.logo-thanku {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 10;
+    background: #fff;
+    width: 200px;
+}
+
+section.banner-thanku img {
+    width: 100%;
+}
+
+.banner_tnq p {
+    font-size: 21px;
+}
+
+.banner_tnq h1 {
+    font-weight: 800;
+    font-size: 50px;
+}
+
+.banner_tnq {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+a.callnowtnq {
+    background: linear-gradient(161.7deg, #f7415f -8.74%, #fe734e 94.03%);
+    color: #fff;
+    border: 2px solid;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transition: all .3s ease-in-out;
+}
+
+.testimonial-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 7px 9px #00000024;
+}
+
+.testi_img {
+    height: 210px;
+}
+
+.test_body {
+    padding: 35px 15px 25px;
+    position: relative;
+}
+
+.test_body p {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+button.watchvideo {
+    background: transparent;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 10px;
+    border: 2px solid;
+    color: #ff280a;
+}
+
+.test_body .fa.fa-play {
+    display: flex;
+    width: 45px;
+    height: 30px;
+    background: red;
+    color: #fff;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    position: absolute;
+    top: -15px;
+    cursor: pointer;
+}
+
+.backtohome {
+    text-align: center;
+    padding: 25px 0;
+}
+
+.backtohome a {
+    border: 2px solid red;
+    border-radius: 25px;
+    padding: 3px 12px;
+    color: red;
+    transition: all .3s ease-in-out;
+}
+
+a:hover,
+a {
+    text-decoration: none;
+}
+
+section.ranking-sec {
+    background: aliceblue;
+    padding: 65px 0;
+}
+
+.ranking-box {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 5px 9px #00000024;
+}
+
+.testimonial-sec .btn-close {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    font-weight: 100;
+    width: 20px;
+    height: 20px;
+    background: #f00;
+    opacity: 1;
+    z-index: 9;
+    color: #fff;
+    transition: all .3s ease-in-out;
+    border: transparent;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section.sample-certificate {
+    background: #ea580c;
+    color: #fff;
+}
+
+.certificate_box {
+    position: absolute;
+    top: 50%;
+    box-shadow: 0px 5px 9px #0000002e;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.certificate-content ul p {
+    font-size: 14px;
+}
+
+.certificate-content {
+    padding: 60px 0px 60px 30px;
+}
+
+.certificate-content ul {
+    border-left: 2px solid;
+    padding-left: 18px;
+    list-style: none;
+}
+
+.courseList span {
+    font-size: 14px;
+    color: #f58220;
+    border: 1px solid;
+    padding: 3px 10px;
+    border-radius: 18px;
+    font-weight: 600;
+}
+
+ul#pills-tab .nav-link {
+    color: #f58220;
+    border: 1px solid;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff !important;
+    background: #f58220;
+}
+
+.course_card {
+    box-shadow: 0px 9px 11px #00000014;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course_card p {
+    color: #575757;
+    font-size: 14px;
+}
+
+.course_card p i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+section.specialization_sec {
+    padding: 65px 0;
+}
+
+`}
+  </style>
 </>
 )
 }
