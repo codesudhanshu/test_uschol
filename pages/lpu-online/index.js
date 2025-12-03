@@ -363,14 +363,7 @@ return(
                                <h2 className={styles.numbers}>₹22,160/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                     <div className={styles.ugcourse_container}>
                         <img src="/lpu/bca.jpg" className={styles.ugcourse_container_img} alt="BCA" />
@@ -384,14 +377,7 @@ return(
                                <h2 className={styles.numbers}>₹22,160/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                     <div className={styles.ugcourse_container}>
                         <img src="/lpu/ba.jpg" className={styles.ugcourse_container_img} alt="BA" />
@@ -405,14 +391,7 @@ return(
                                <h2 className={styles.numbers}>₹14,960/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                 </div>
             )}
@@ -431,14 +410,7 @@ return(
                                <h2 className={styles.numbers}>₹32,960/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                     <div className={styles.ugcourse_container}>
                         <img src="/lpu/mca.jpg" className={styles.ugcourse_container_img} alt="MBA" />
@@ -452,14 +424,7 @@ return(
                                <h2 className={styles.numbers}>₹25,760/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                     <div className={styles.ugcourse_container}>
                         <img src="/lpu/msc.jpg" className={styles.ugcourse_container_img} alt="MCOM" />
@@ -473,14 +438,7 @@ return(
                                <h2 className={styles.numbers}>₹18,560/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                 </div>
             )}
@@ -500,14 +458,7 @@ return(
                                <h2 className={styles.numbers}>₹24,400/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                     <div className={styles.ugcourse_container}>
                         <img src="/lpu/dca.jpg" className={styles.ugcourse_container_img} alt="DCA" />
@@ -521,14 +472,7 @@ return(
                                <h2 className={styles.numbers}>₹24,400/Sem*</h2>
                             </div>
                         </div>
-                        <button className={styles.apply} onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>Apply Now</button>
+                        <button className={styles.apply}  onClick={() => window.openLPUModal && window.openLPUModal()}>Apply Now</button>
                     </div>
                 </div>
             )}
@@ -548,14 +492,7 @@ return(
             {" "}
             <center>
               <button type="button" className={styles.btn2}
-              onClick={() => {
-                const fnameInput = document.getElementById("name");
-                
-                if (fnameInput) {
-                  fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                  fnameInput.focus(); // Instant focus without delay
-                }
-              }}>
+              onClick={() => window.openLPUModal && window.openLPUModal()}>
                 Apply Now
               </button>
             </center>
@@ -1321,14 +1258,7 @@ return(
           <br />
             
             <button type="button" className={styles.btn1}
-            onClick={() => {
-              const fnameInput = document.getElementById("name");
-              
-              if (fnameInput) {
-                fnameInput.scrollIntoView({ behavior: "smooth", block: "start" });
-                fnameInput.focus(); // Instant focus without delay
-              }
-            }}>
+            onClick={() => window.openLPUModal && window.openLPUModal()}>
               Apply Now
             </button>
         </div>
