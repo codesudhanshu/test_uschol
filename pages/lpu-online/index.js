@@ -220,17 +220,20 @@ return(
             <div className="banner-content">
               <h1 className="fw-bold">LPU Online Degree Programmes</h1>
               
-              <div className="courseList mb-4">
-                {courses.map((course, index) => (
-                  <Link
-                    key={index} 
-                    href={course.href}
-                    className="course-link"
-                  >
-                    <span>{course.name}</span>
-                  </Link>
-                ))}
-              </div>
+           <div className="courseList mb-4 flex flex-wrap gap-1">
+  {courses.map((course, index) => (
+    <Link
+      key={index}
+      href={course.href}
+      className="course-link 
+                  py-2 
+                "
+    >
+      <span>{course.name}</span>
+    </Link>
+  ))}
+</div>
+
               
               <p className="mb-4">
                 Get UGC Entitled Degree from India&apos;s Top Ranked University

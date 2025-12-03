@@ -122,7 +122,7 @@ export default function LPUModalForm() {
                     type="text"
                     name="name"
                     placeholder="Enter Name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
                     value={formData.name}
                     onChange={handleChange}
                   />
@@ -131,7 +131,7 @@ export default function LPUModalForm() {
                     type="email"
                     name="email"
                     placeholder="Enter email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -141,7 +141,7 @@ export default function LPUModalForm() {
                     name="phoneNumber"
                     maxLength={10}
                     placeholder="Enter Phone No."
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
                     value={formData.phoneNumber}
                     onChange={handleChange}
                   />
@@ -261,7 +261,7 @@ export default function LPUModalForm() {
             type="text"
             name="name"
             placeholder="Enter Name"
-            className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
+            className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
             value={formData.name}
             onChange={handleChange}
           />
@@ -270,7 +270,7 @@ export default function LPUModalForm() {
             type="email"
             name="email"
             placeholder="Enter email"
-            className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
+            className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
             value={formData.email}
             onChange={handleChange}
           />
@@ -280,7 +280,7 @@ export default function LPUModalForm() {
             name="phoneNumber"
             maxLength={10}
             placeholder="Enter Phone No."
-            className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
+            className="w-full px-4 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
             value={formData.phoneNumber}
             onChange={handleChange}
           />
@@ -333,7 +333,7 @@ export default function LPUModalForm() {
           
           <select
             name="course"
-            className="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-orange-500"
+            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-orange-500"
             value={formData.course}
             onChange={handleChange}
           >
