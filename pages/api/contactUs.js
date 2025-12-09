@@ -1,60 +1,98 @@
 import dbConnect from "../../dbConnect";
-import ContactUsModel  from "../../model/contactUsModel";
+import ContactUsModel from "../../model/contactUsModel";
+
+const NEODOVE_URL = process.env.NEODOVE_URL;
 
 export default async function ContactUs(req, res) {
-	await dbConnect();
-	const {
-		method
-	} = req;
-	switch (method) {
-		case "POST":
-			try {
-				const {
-					name,
-					email,
-					phoneNumber
-				} = req.body;
-				const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-				const phoneRegex = /^(\+\d{1,4}\s?)?\d{10}$/;
-				if (!name || !email || !phoneNumber) {
-					return res.status(400).json({
-						message: "Please fill all the fields",
-						success: false
-					});
-				}
-				if (!emailRegex.test(email)) {
-					return res.status(400).json({
-						message: "Please enter a valid email address",
-						success: false
-					});
-				}
-				if (!phoneRegex.test(phoneNumber)) {
-					return res.status(400).json({
-						message: "Please enter a valid phone number",
-						success: false
-					});
-				}
-				const contactUs = await ContactUsModel.create({
-					name,
-					email,
-					phoneNumber
-				});
-				return res.status(200).json({
-					success: true,
-					status: 200,
-					message: "Successfully Submitted",
-					data: contactUs
-				});
-			} catch (error) {
-				console.log(error);
-				return res.status(400).json({
-					success: false
-				})
-			}
-		default:
-			res.status(400).json({
-				success: false
-			})
-			break
-	}
+  await dbConnect();
+  const { method } = req;
+
+  switch (method) {
+    case "POST":
+      try {
+        const { name, email, phoneNumber } = req.body;
+
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        const phoneRegex = /^(\+\d{1,4}\s?)?\d{10}$/;
+
+        if (!name || !email || !phoneNumber) {
+          return res.status(400).json({
+            message: "Please fill all the fields",
+            success: false
+          });
+        }
+
+        if (!emailRegex.test(email)) {
+          return res.status(400).json({
+            message: "Please enter a valid email address",
+            success: false
+          });
+        }
+
+        if (!phoneRegex.test(phoneNumber)) {
+          return res.status(400).json({
+            message: "Please enter a valid phone number",
+            success: false
+          });
+        }
+
+        // 1) Save to DB
+        const contactUs = await ContactUsModel.create({
+          name,
+          email,
+          phoneNumber
+        });
+
+        // 2) Prepare Neodove payload
+        const neodovePayload = {
+          name: String(name),
+          mobile: String(phoneNumber),
+          email: String(email),
+          detail1: "Contact Us",
+          detail2: ""
+        };
+
+        // 3) Send to Neodove (best-effort)
+        let neodoveResult = { success: false, status: null, body: null, error: null };
+
+        if (NEODOVE_URL) {
+          try {
+            const resp = await fetch(NEODOVE_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(neodovePayload)
+            });
+
+            neodoveResult.status = resp.status;
+            const text = await resp.text();
+            neodoveResult.body = text;
+            neodoveResult.success = resp.ok;
+            if (!resp.ok) console.warn("Neodove (ContactUs) non-2xx:", resp.status, text);
+          } catch (err) {
+            console.error("Neodove send error (ContactUs):", err?.message || err);
+            neodoveResult.error = err?.message || String(err);
+          }
+        } else {
+          neodoveResult.error = "NEODOVE_URL not configured";
+        }
+
+        return res.status(200).json({
+          success: true,
+          status: 200,
+          message: "Successfully Submitted",
+          data: contactUs,
+          neodove: neodoveResult
+        });
+      } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+          success: false,
+          message: "Server Error",
+          error: error?.message || String(error)
+        });
+      }
+
+    default:
+      return res.status(405).json({ success: false, message: "Method Not Allowed" });
+  }
 }
