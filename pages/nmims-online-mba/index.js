@@ -135,6 +135,26 @@ return(<><Head><meta charset="utf-8" />
 						padding: 0;
 					}
 				`}</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10826211880"></script>
+<script dangerouslySetInnerHTML={{
+	__html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10826211880');`
+}}
+ />
+
+				<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17758036862"></script>
+<script dangerouslySetInnerHTML={{
+  __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17758036862');`
+}}/>
 			</Head>
 			<main style={{overflow:"hidden"}}>
 	<header>
