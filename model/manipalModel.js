@@ -17,6 +17,9 @@ const manipalSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    course_name: {
+        type: String,
+    },
     date:{
         type: Date,
         default: Date.now
