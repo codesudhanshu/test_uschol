@@ -27,10 +27,10 @@ export default async function handler(req, res) {
 
     const college = "NMIMS University";
     const saved = await newEntry.save();
-
+    const course_name = ""
     // send internal email (best-effort)
     try {
-      await sendEnquiryNotificationmaninmims({ name, email, phoneNumber, college, location });
+      await sendEnquiryNotificationmaninmims({ name, email, phoneNumber, college, location, course_name });
     } catch (emailErr) {
       console.error('Email notify error (NMIMS):', emailErr?.message || emailErr);
     }
