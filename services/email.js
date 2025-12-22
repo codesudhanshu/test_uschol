@@ -148,10 +148,10 @@ export async function sendEnquiryNotification({ name, email, phoneNumber, course
     }
 }
 
-export async function sendEnquiryNotificationmaninmims({ name, email, phoneNumber, location, college }) {
+export async function sendEnquiryNotificationmaninmims({ name, email, phoneNumber, location, college, course_name }) {
     const recipientEmail = "upscholindia@gmail.com";
     const subject = "New Enquiry in UpSchol.com";
-    const message = `Name: ${name},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}`;
+    const message = `Name: ${name},\nCollege: ${college},\nEmail: ${email},\nPhone: ${phoneNumber},\nLocation: ${location}, \nCourse Name: ${course_name}`;
 
     const params = {
         Source: process.env.SES_EMAIL_NOREPLY,
