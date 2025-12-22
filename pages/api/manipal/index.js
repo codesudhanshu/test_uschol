@@ -6,30 +6,21 @@ const NEODOVE_URL = process.env.NEODOVE_URL;
 
 // ================= CORS HELPER =================
 function setCors(res) {
-  res.setHeader("Access-Control-Allow-Origin", "*"); // allow from anywhere
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,POST,PUT,DELETE,OPTIONS"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 }
 // ==============================================
 
 export default async function handler(req, res) {
-  // ✅ Apply CORS headers
   setCors(res);
 
-  // ✅ Handle preflight request
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
   await dbConnect();
 
-  // Allow only POST
   if (req.method !== "POST") {
     return res
       .status(405)
@@ -37,12 +28,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phoneNumber, location } = req.body;
+    // 👇 course_name OPTIONAL
+    const { name, email, phoneNumber, location, course_name } = req.body;
 
+    // ❗ course_name intentionally NOT validated
     if (!name || !email || !phoneNumber || !location) {
-      return res
-        .status(400)
-        .json({ success: false, message: "All fields are required" });
+      return res.status(400).json({
+        success: false,
+        message: "name, email, phoneNumber, location are required",
+      });
     }
 
     // 1️⃣ Save to MongoDB
@@ -51,12 +45,13 @@ export default async function handler(req, res) {
       email,
       phoneNumber,
       location,
+      ...(course_name && { course_name }), // ✅ optional save
     });
 
     const college = "Manipal University";
     const saved = await newEntry.save();
 
-    // 2️⃣ Send internal email (non-blocking)
+    // 2️⃣ Email notification
     try {
       await sendEnquiryNotificationmaninmims({
         name,
@@ -64,18 +59,20 @@ export default async function handler(req, res) {
         phoneNumber,
         college,
         location,
+        ...(course_name && { course_name }), // ✅ optional email
       });
     } catch (emailErr) {
       console.error("Email notify error:", emailErr);
     }
 
-    // 3️⃣ Send data to Neodove
+    // 3️⃣ Neodove payload
     const neodovePayload = {
       name: String(name),
       mobile: String(phoneNumber),
       email: String(email),
       detail1: String(location),
       detail2: String(college),
+      ...(course_name && { detail3: String(course_name) }), // ✅ optional
     };
 
     let neodoveResult = { success: false };
@@ -105,6 +102,7 @@ export default async function handler(req, res) {
       success: true,
       message: "Saved successfully",
       dbId: saved._id,
+      course_name: course_name || null,
       neodove: neodoveResult,
     });
   } catch (error) {
